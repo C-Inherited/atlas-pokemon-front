@@ -1,27 +1,27 @@
 .pokelist{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .pokecard{
-    width: 200px;
-    height:200px;
-    max-height: 200px;
-    margin: 1%;
+    width: 240px;
+    height:280px;
+    max-height: 280px;
+    margin: 0.4%;
     border-radius: 1em;
     background-color: white;
     transition: all 0.4s;
     border: rgb(245, 227, 227);
     border-style: solid;
     border-width: 2px;
-    transition: max-height 0.55s ease-in-out;
 }
 
 .pokecard-open{
     max-height: 500px;
     height: fit-content;
-    transition: max-height 0.55s ease-in-out;
+    transition: all 0.55s ease-in-out;
 }
 
 .pokecard:hover{
@@ -29,4 +29,128 @@
     border: rgb(192, 126, 126);
     border-style: solid;
     border-width: 2px;
+}
+
+.pokeimg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text{
+    line-height: 1.5em; 
+    text-align: center;
+}
+
+/* type styles, different for each type */
+.poketype{
+    display: inline-block;
+    line-height: 1.3em;
+    border-radius: 0.4em;
+    border-style: solid;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    text-transform: uppercase; 
+}
+
+.normal{
+    background-color: #AAB09F;
+    border-color: #AAB09F;
+}
+
+.fighting{
+    background-color: #CB5F48;
+    border-color: #CB5F48;
+}
+
+.flying{
+    background-color: #7DA6DE;
+    border-color: #7DA6DE;
+}
+
+.poison{
+    background-color: #B468B7;
+    border-color: #B468B7;
+}
+
+.ground{
+    background-color: #CC9F4F;
+    border-color: #CC9F4F;
+}
+
+.rock{
+    background-color: #B2A061;
+    border-color: #B2A061;
+}
+
+.bug{
+    background-color: #D8E030;
+    border-color: #D8E030;
+}
+
+.ghost{
+    background-color: #846AB6;
+    border-color: #846AB6;
+}
+
+.steel{
+    background-color: #89A1B0;
+    border-color: #89A1B0;
+}
+
+.fire{
+    background-color: #EA7A3C;
+    border-color: #EA7A3C;
+}
+
+.water{
+    background-color: #539AE2;
+    border-color: #539AE2;
+}
+
+.grass{
+    background-color: #71C558;
+    border-color: #71C558;
+}
+
+.electric{
+    background-color: #E5C531;
+    border-color: #E5C531;
+}
+
+.psychic{
+    background-color: #E5709B;
+    border-color: #E5709B;
+}
+
+.ice{
+    background-color: #70CBD4;
+    border-color: #70CBD4;
+}
+
+.dragon{
+    background-color: #6A7BAF;
+    border-color: #6A7BAF;
+}
+
+.dark{
+    background-color: #736C75;
+    border-color: #736C75;
+}
+
+.fairy{
+    background-color: #E397D1;
+    border-color: #E397D1;
+}
+
+.unknown{
+    background-color: rgb(145, 62, 145);
+    border-color: purple;
+}
+
+.shadow{
+    background-color: red;
+    border-color: rgb(207, 0, 0);
 }
