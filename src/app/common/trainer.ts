@@ -1,7 +1,9 @@
+import { Pokemon } from "./pokemon";
+
 export class Trainer {
   id: number;
   name: string;
-  // team: Pokemon[];
+  team: Pokemon[];
   hobby: string;
   age: number;
   imageUrl: string;
