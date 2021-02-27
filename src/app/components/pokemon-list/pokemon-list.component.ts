@@ -16,7 +16,9 @@ export class PokemonListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPokemonById(37);
+    for (let i=0; i<20; i++){
+      this.getPokemonById(36+i);
+    }
     this.getPokemonByName('ditto');
   }
 
@@ -51,6 +53,10 @@ export class PokemonListComponent implements OnInit {
     )
          this.pokemons.push(pokemon);
       })
+  }
+
+  showPokemon(index: number){
+    this.pokemons[index].show = !this.pokemons[index].show;
   }
 
 }

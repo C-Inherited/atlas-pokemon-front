@@ -1,10 +1,12 @@
 <div class="pokelist">
-    <div *ngFor="let pokemon of pokemons">
+    <div class="card" style="width: 18rem;" *ngFor="let pokemon of pokemons; let i = index" (click)="showPokemon(i)" [ngClass]="{'pokecard-open':pokemon.show}">
         <!-- <img src="{{pokemon.photo}}" height="100"/> -->
-        <img src="{{pokemon.artwork}}" height="60"/>
-        <p>{{pokemon.id}}</p>
-        <p>{{pokemon.name}}</p>
-        <p>{{pokemon.types}}</p>
-        <app-pokemon-details [pokemon]="pokemon"></app-pokemon-details>
+        <img class="card-img-top" src="{{pokemon.artwork}}" alt="Card image cap">
+        <div class="card-body"></div>
+        <p class="card-text">{{pokemon.id}}</p>
+        <p class="card-text">{{pokemon.name}}</p>
+        <p class="card-text">{{pokemon.types}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <app-pokemon-details *ngIf="pokemon.show" [pokemon]="pokemon"></app-pokemon-details>
     </div>
 </div>
