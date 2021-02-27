@@ -1,1 +1,8 @@
-<p>trainer-list works!</p>
+<div *ngFor="let trainer of trainers">
+
+  <img src="{{trainer.imageUrl}}" height="60"/>
+  <p>{{trainer.name}}</p>
+  <p>{{trainer.hobby}}</p>
+
+
+</div>
