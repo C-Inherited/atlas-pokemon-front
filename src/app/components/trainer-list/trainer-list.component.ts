@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Trainer} from '../../common/trainer';
+import {TrainerService} from '../../services/trainer.service';
 
 @Component({
   selector: 'app-trainer-list',
@@ -8,17 +9,23 @@ import {Trainer} from '../../common/trainer';
 })
 export class TrainerListComponent implements OnInit {
 
-  trainers: Trainer[];
+  trainers: Trainer[] = [];
+  trainer: Trainer;
 
-  constructor() {
+  constructor(private trainerService: TrainerService) {
   }
 
   ngOnInit(): void {
     this.listTrainers();
   }
 
-  private listTrainers() {
-    let imageUrl = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fideas%2Fimages%2F9%2F9f%2FAsh_ketchum_render_by_tzblacktd-da9k0wb.png%2Frevision%2Flatest%3Fcb%3D20180427162023&f=1&nofb=1';
-    this.trainers = [new Trainer(1, 'Ash', 'Meditation', 24, imageUrl), new Trainer(2, 'EvilAsh', 'Baking', 24, imageUrl)];
+  private listTrainers(): void {
+    this.trainerService.getTrainers().subscribe((simpleTrainersList) => {
+      for (const simpleTrainer of simpleTrainersList) {
+        this.trainers.push(new Trainer(simpleTrainer.id, simpleTrainer.name, simpleTrainer.hobby,
+          simpleTrainer.age, simpleTrainer.imageUrl));
+      }
+    });
   }
+
 }
