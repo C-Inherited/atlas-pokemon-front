@@ -20,12 +20,33 @@ export class TrainerListComponent implements OnInit {
   }
 
   private listTrainers(): void {
-    this.trainerService.getTrainers().subscribe((simpleTrainersList) => {
+    this.trainers = [];
+    this.trainerService.getCompleteTrainers().subscribe((simpleTrainersList) => {
       for (const simpleTrainer of simpleTrainersList) {
         this.trainers.push(new Trainer(simpleTrainer.id, simpleTrainer.name, simpleTrainer.hobby,
           simpleTrainer.age, simpleTrainer.imageUrl));
       }
     });
+  }
+
+  postTrainer(trainer: {id: number, name: string, hobby: string, age: number, imageUrl: string}): void{
+    this.trainerService.postSimpleTrainer(trainer).subscribe(result => {
+      this.listTrainers();
+    })
+  }
+
+  deleteTrainer(id: number): void{
+    this.trainerService.deleteTrainer(id).subscribe(result => {
+      this.listTrainers();
+    })
+  }
+
+  addPokemon(pokemon: {pokemonId: number, trainerId: number}): void{
+    this.trainerService.addPokemonToTrainer(pokemon).subscribe(result => {})
+  }
+
+  deletePokemon(id: number):void {
+    this.trainerService.deletePokemonFromTeam(id).subscribe(result => {})
   }
 
 }

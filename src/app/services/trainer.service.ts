@@ -8,15 +8,23 @@ import {Observable} from 'rxjs';
 })
 export class TrainerService {
   private id = 1;
-  private listOfTrainersUrl = 'http://localhost:8080/trainers';
-  private completeTrainerByIdUrl = 'http://localhost:8080/trainer/';
+  private baseUrl = 'http://localhost:8080';
   private pokemon = '/pokemon';
+  private listOfTrainersUrl = this.baseUrl+'/trainers';
+  private completeTrainerByIdUrl = this.baseUrl+'/trainer/';
+  private postSimpleTrainerUrl = this.baseUrl+'/trainer';
+  private pokemonCompleteUrl = this.baseUrl+this.pokemon;
+  
 
   constructor(private httpClient: HttpClient) {
   }
 
   getTrainers(): Observable<TrainerSimple[]> {
     return this.httpClient.get<TrainerSimple[]>(this.listOfTrainersUrl);
+  }
+
+  getCompleteTrainers(): Observable<TrainerComplete[]> {
+    return this.httpClient.get<TrainerComplete[]>(this.listOfTrainersUrl+this.pokemon);
   }
 
   getTrainerById(id: number): Observable<TrainerSimple> {
@@ -26,8 +34,6 @@ export class TrainerService {
     return this.httpClient.get<TrainerSimple>(this.completeTrainerByIdUrl + id);
   }
 
-
-
   getCompleteTrainerById(id: number): Observable<TrainerComplete> {
     this.id = id;
     console.log(id);
@@ -35,6 +41,21 @@ export class TrainerService {
     return this.httpClient.get<TrainerComplete>(this.completeTrainerByIdUrl + id + this.pokemon);
   }
 
+  postSimpleTrainer(body: {id: number, name: string, hobby: string, age: number, imageUrl: string}):Observable<Object>{
+    return this.httpClient.post(this.postSimpleTrainerUrl, body);
+  }
+
+  deleteTrainer(id: number): Observable<any>{
+    return this.httpClient.delete(this.completeTrainerByIdUrl+id)
+  }
+
+  addPokemonToTrainer(body: {pokemonId: number, trainerId: number}):Observable<Object>{ // pokemon id = species id (not unique)
+    return this.httpClient.post(this.pokemonCompleteUrl, body);
+  }
+
+  deletePokemonFromTeam(id: number): Observable<any>{  // database id (primary key)
+    return this.httpClient.delete(this.pokemonCompleteUrl +'/'+id)
+  }
 }
 
 interface TrainerSimple {
