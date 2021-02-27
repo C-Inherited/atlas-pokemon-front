@@ -6,13 +6,15 @@ import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-de
 import { TrainerListComponent } from './components/trainer-list/trainer-list.component';
 import { TrainerDetailsComponent } from './components/trainer-details/trainer-details.component';
 import { FormsModule } from '@angular/forms';
+import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonDetailsComponent,
     TrainerListComponent,
-    TrainerDetailsComponent
+    TrainerDetailsComponent,
+    PokemonListComponent
   ],
   imports: [
     BrowserModule,
