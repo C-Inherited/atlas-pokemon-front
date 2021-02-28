@@ -7,6 +7,7 @@ import {TrainerService} from '../../services/trainer.service';
   templateUrl: './trainer-list.component.html',
   styleUrls: ['./trainer-list.component.css']
 })
+
 export class TrainerListComponent implements OnInit {
 
   trainers: Trainer[] = [];

@@ -19,6 +19,7 @@ export class TrainerService {
   constructor(private httpClient: HttpClient) {
   }
 
+
   getTrainers(): Observable<TrainerSimple[]> {
     return this.httpClient.get<TrainerSimple[]>(this.listOfTrainersUrl);
   }
@@ -86,4 +87,3 @@ interface TrainerComplete {
     pokemonId: number;
   }[]
 }
-
