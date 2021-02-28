@@ -21,12 +21,22 @@ export class TrainerListComponent implements OnInit {
 
   private listTrainers(): void {
     this.trainers = [];
-    this.trainerService.getCompleteTrainers().subscribe((simpleTrainersList) => {
+    this.trainerService.getTrainers().subscribe((simpleTrainersList) => {
       for (const simpleTrainer of simpleTrainersList) {
         this.trainers.push(new Trainer(simpleTrainer.id, simpleTrainer.name, simpleTrainer.hobby,
           simpleTrainer.age, simpleTrainer.imageUrl));
       }
     });
+  }
+
+  private getTrainer(id: number): void{
+    this.trainerService.getCompleteTrainerById(id).subscribe(completeTrainer => {
+      this.trainer = new Trainer(completeTrainer.id, completeTrainer.name, completeTrainer.hobby, completeTrainer.age, completeTrainer.imageUrl)
+      this.trainer.team = []
+      for (const simplePokemon of completeTrainer.team.team){
+        // ESTOY EN LA RAMA MASTER, DEBERIA IRME A DEVELOP-CELIA
+      }
+    })
   }
 
   postTrainer(trainer: {id: number, name: string, hobby: string, age: number, imageUrl: string}): void{

@@ -23,10 +23,6 @@ export class TrainerService {
     return this.httpClient.get<TrainerSimple[]>(this.listOfTrainersUrl);
   }
 
-  getCompleteTrainers(): Observable<TrainerComplete[]> {
-    return this.httpClient.get<TrainerComplete[]>(this.listOfTrainersUrl+this.pokemon);
-  }
-
   getTrainerById(id: number): Observable<TrainerSimple> {
     this.id = id;
     console.log(id);
