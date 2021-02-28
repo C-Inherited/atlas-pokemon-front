@@ -57,4 +57,8 @@ export class PokemonListComponent implements OnInit {
       })
   }
 
+  showPokemon(index: number){
+    this.pokemons[index].show = !this.pokemons[index].show;
+  }
+
 }

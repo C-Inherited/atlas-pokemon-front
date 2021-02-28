@@ -2,19 +2,20 @@ export class Pokemon {
 
     constructor(    
         private _id: number,
-         private _name: string,
-         private _hp: number,
-         private _attack: number,
-         private _defense: number,
-         private _special_attack: number,
-         private _special_defense: number,
-         private _speed: number,
-         private _types: string[],
-         private _height: number,
-         private _weight: number,
-         private _abilities: string[],
-         private _photo: string,
-         private _artwork: string
+        private _name: string,
+        private _hp: number,
+        private _attack: number,
+        private _defense: number,
+        private _special_attack: number,
+        private _special_defense: number,
+        private _speed: number,
+        private _types: string[],
+        private _height: number,
+        private _weight: number,
+        private _abilities: string[],
+        private _photo: string,
+        private _artwork: string,
+        private _show: boolean = false
     ){ }
 
     get id(): number{
@@ -127,6 +128,14 @@ export class Pokemon {
 
     set artwork(artwork: string){
         this._artwork = artwork;
+    }
+
+    get show(): boolean{
+        return this._show;
+    }
+
+    set show(show: boolean){
+        this._show = show;
     }
 
 }

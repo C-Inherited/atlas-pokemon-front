@@ -18,7 +18,6 @@ export class PokemonService {
   getPokemonByName(name: string): Observable<PokemonRaw> {
     return this.http.get<PokemonRaw>('https:pokeapi.co/api/v2/pokemon/'+name);
   }
-  
 }
 
 interface PokemonRaw {
