@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/common/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
@@ -8,7 +8,9 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-
+  
+  @Input()
+  team: {id: number, pokemonId: number}[] = [];
   pokemons: Pokemon[] = [];
 
   constructor(
@@ -16,8 +18,10 @@ export class PokemonListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPokemonById(37);
-    this.getPokemonByName('ditto');
+    this.pokemons = []
+    for (const simplePokemon of this.team){
+      this.getPokemonById(simplePokemon.pokemonId)
+    }
   }
 
   getPokemonById(id: number):void{

@@ -23,8 +23,14 @@ export class TrainerListComponent implements OnInit {
     this.trainers = [];
     this.trainerService.getCompleteTrainers().subscribe((simpleTrainersList) => {
       for (const simpleTrainer of simpleTrainersList) {
-        this.trainers.push(new Trainer(simpleTrainer.id, simpleTrainer.name, simpleTrainer.hobby,
-          simpleTrainer.age, simpleTrainer.imageUrl));
+        let team = [];
+        for (const simplePokemon of simpleTrainer.team) {
+            team.push({id: simplePokemon.id, pokemonId: simplePokemon.pokemonId})
+        }
+        let trainer = new Trainer(simpleTrainer.id, simpleTrainer.name, simpleTrainer.hobby,
+          simpleTrainer.age, simpleTrainer.imageUrl)
+        trainer.team = team;
+        this.trainers.push(trainer);
       }
     });
   }
@@ -42,11 +48,19 @@ export class TrainerListComponent implements OnInit {
   }
 
   addPokemon(pokemon: {pokemonId: number, trainerId: number}): void{
-    this.trainerService.addPokemonToTrainer(pokemon).subscribe(result => {})
+    this.trainerService.addPokemonToTrainer(pokemon).subscribe(result => {
+      this.listTrainers();
+    })
   }
 
   deletePokemon(id: number):void {
-    this.trainerService.deletePokemonFromTeam(id).subscribe(result => {})
+    this.trainerService.deletePokemonFromTeam(id).subscribe(result => {
+      this.listTrainers();
+    })
+  }
+
+  showHideTeam(index: number):void{
+    this.trainers[index].showTeam = !this.trainers[index].showTeam;
   }
 
 }

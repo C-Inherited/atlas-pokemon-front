@@ -6,7 +6,11 @@ export class Trainer {
   hobby: string;
   age: number;
   imageUrl: string;
-  team: Pokemon[] = [];
+  team: {
+    id: number,
+    pokemonId: number
+  }[] = [];
+  showTeam: boolean = false;
 
 
   constructor(id: number, name: string, hobby: string, age: number, imageUrl: string) {

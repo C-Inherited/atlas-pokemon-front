@@ -81,6 +81,9 @@ interface TrainerComplete {
   hobby: string;
   age: number;
   imageUrl: string;
-  team: Team;
+  team: {
+    id: number;
+    pokemonId: number;
+  }[]
 }
 
