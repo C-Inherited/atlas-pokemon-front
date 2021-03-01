@@ -1,0 +1,19 @@
+.poke-div{
+    height: 100px;
+    width: 100px;
+    float: left;
+    margin: 15px;
+    background-color: white;
+    text-align: center;
+    border-radius: 50%;
+
+}
+
+.poke-img {
+
+    height: 50%;
+}
+
+.poke-box{
+    display: flex;
+}
