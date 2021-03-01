@@ -12,10 +12,21 @@
   border-width: 2px;
 }
 
+.trainer-card:hover {
+  cursor: pointer;
+}
+
 .trainerlist {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
+}
+
+.image-trainer {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
 }

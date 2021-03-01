@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Pokemon } from 'src/app/common/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
@@ -17,6 +17,7 @@ export class PokemonTrainerListComponent implements OnInit {
   ngOnInit(): void {
     this.pokemons = [];
     for (const simplePokemon of this.team) {
+      console.log('Here i AM');
       this.getPokemonById(simplePokemon.pokemonId);
     }
   }

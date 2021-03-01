@@ -3,3 +3,10 @@
   font-family: "VT323", monospace;
   font-size: 30px;
 }
+
+#trainer-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
