@@ -1,10 +1,10 @@
 .trainercard {
+  border-radius: 50%;
   margin-top: 300px;
   width: 150px;
   height: 150px;
   max-height: 280px;
   margin: 0.4%;
-  border-radius: 1em;
   background-color: white;
   transition: all 0.4s;
   border: rgb(245, 227, 227);
@@ -12,9 +12,39 @@
   border-width: 2px;
 }
 
-.trainer-card:hover {
-  cursor: pointer;
-}
+.trainercard:hover {
+    cursor: pointer;
+    border-style: solid;
+    border-width: 2px;
+    border-color: cornflowerblue;
+    z-index: 100;
+    -webkit-animation: scale 0.3s linear;
+    -moz-animation: scale 0.3s linear;
+    animation: scale 0.3s linear;
+    transform-origin: 50% 50%;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.04);
+      -webkit-box-shadow: 10px 10px 60px 10px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 10px 10px 60px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 10px 10px 60px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  @keyframes scaledown {
+    0% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
 .trainerlist {
   display: flex;
@@ -29,4 +59,7 @@
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
