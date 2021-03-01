@@ -1,7 +1,6 @@
 <div class="pokelist">
   <div
     *ngFor="let pokemon of pokemons; let i = index"
-    (click)="showPokemon(i)"
     [ngClass]="{ pokecard: true }"
   >
     <!-- <img src="{{pokemon.photo}}" height="100"/> -->

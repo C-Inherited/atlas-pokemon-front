@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pokemon } from 'src/app/common/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
-  selector: 'app-pokemon-list',
-  templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.css'],
+  selector: 'app-pokemon-trainer-list',
+  templateUrl: './pokemon-trainer-list.component.html',
+  styleUrls: ['./pokemon-trainer-list.component.css'],
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonTrainerListComponent implements OnInit {
   @Input() team: { id: number; pokemonId: number }[] = [];
 
   pokemons: Pokemon[] = [];

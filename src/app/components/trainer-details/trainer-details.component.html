@@ -1,22 +1,28 @@
-<div class="main-trainer-container" >
-
-    <div class="trainer-details-container">
-        <div class="trainers-details-basic">
-            <div class="selected-trainer-photo">
-                <img src="{{trainer.imageUrl}}" height="250"/>
-            </div>
-            <div class="trainer-details-text">
-                <p class="text">Name: {{trainer.name}}</p>
-                <p class="text">Hobby: {{trainer.hobby}}</p>
-                <p class="text">Age: {{trainer.age}}</p>
-            </div>
-        </div>
-        
-        <div class="trainer-details-team">
-            <app-pokemon-list *ngIf="trainer.showTeam" [team]="trainer.team"></app-pokemon-list>
-        </div>
-    </div>
-
-    <app-trainer-list (showTrainerDetailsEvent)="showTrainerDetails($event)"></app-trainer-list>
-
+<div class="row justify-content-md-center">
+  <div class="col">
+    <img
+      class="rounded mx-auto d-block"
+      src="{{ trainer.imageUrl }}"
+      height="250"
+    />
+  </div>
+  <div id="app-trainer-details" class="col-4" *ngIf="showDetails">
+    <p class="text">Name: {{ trainer.name }}</p>
+    <p class="text">Hobby: {{ trainer.hobby }}</p>
+    <p class="text">Age: {{ trainer.age }}</p>
+    <p class="text">booleano: {{ trainer.showTeam }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-pokemon-trainer-list
+      *ngIf="trainer.showTeam"
+      [team]="trainer.team"
+    ></app-pokemon-trainer-list>
+  </div>
+</div>
+<div class="row">
+  <app-trainer-list
+    (showTrainerDetailsEvent)="showTrainerDetails($event)"
+  ></app-trainer-list>
 </div>
