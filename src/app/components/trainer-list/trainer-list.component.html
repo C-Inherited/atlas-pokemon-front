@@ -1,12 +1,6 @@
-
-<div *ngFor="let trainer of trainers; let i = index">
-
-  <img src="{{trainer.imageUrl}}" height="60" (click)="showHideTeam(i)"/>
-  <p>{{trainer.name}}</p>
-  <p>{{trainer.hobby}}</p>
-
-  <app-pokemon-list *ngIf="trainer.showTeam" [team]="trainer.team"></app-pokemon-list>
-
-  
-
+<div class="trainerlist" >
+  <div class="trainercard" *ngFor="let trainer of trainers; let i = index" (click)="showTrainerDetails(i)">
+      <img src="{{trainer.imageUrl}}" height="100"/>
+      <p>{{trainer.name}}</p>
+  </div>
 </div>

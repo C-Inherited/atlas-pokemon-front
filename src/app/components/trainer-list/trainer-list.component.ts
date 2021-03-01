@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Trainer} from '../../common/trainer';
 import {TrainerService} from '../../services/trainer.service';
 
@@ -13,6 +13,8 @@ export class TrainerListComponent implements OnInit {
 
   trainers: Trainer[] = [];
   trainer: Trainer;
+
+  @Output() showTrainerDetailsEvent = new EventEmitter();
 
   constructor(private trainerService: TrainerService) {
   }
@@ -61,8 +63,10 @@ export class TrainerListComponent implements OnInit {
     })
   }
 
-  showHideTeam(index: number):void{
-    this.trainers[index].showTeam = !this.trainers[index].showTeam;
+  showTrainerDetails(index: number):void{
+    this.trainers.forEach(trainer => trainer.showTeam = false);
+    this.trainers[index].showTeam = true;
+    this.showTrainerDetailsEvent.emit(this.trainers[index]);
   }
 
 }

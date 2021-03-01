@@ -1,0 +1,48 @@
+.trainer-details-container{
+    position: relative;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height:550px;
+    background-color: blue ;
+}
+
+.main-trainer-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+}
+
+.trainers-details-basic{
+    position: relative;
+    top: 5%;
+    left: 3%;
+    border: 3px solid rgb(255, 251, 0);
+    padding: 20px 40px 40px;
+    max-width: 600px;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.selected-trainer-photo{
+    height: 250px;
+}
+
+.trainer-details-text{
+    display: inline;
+    color: white;
+    border-style: solid;
+    border-color: turquoise;
+    width: fit-content;
+}
+
+.trainer-details-team{
+    position: absolute;
+    bottom: 0%;
+    border-style: solid;
+    border-color: violet;
+    width: 100%;
+}

@@ -1,13 +1,16 @@
 .pokelist{
+    position: relative;
+    height: fit-content;
+    bottom: 0%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
 }
 
 .pokecard{
-    width: 240px;
-    height:280px;
+    width: 150px;
+    height:180px;
     max-height: 280px;
     margin: 0.4%;
     border-radius: 1em;
@@ -19,7 +22,7 @@
 }
 
 .pokecard-open{
-    max-height: 500px;
+    max-height: 1000px;
     height: fit-content;
     transition: all 0.55s ease-in-out;
 }
@@ -44,6 +47,7 @@
 
 /* type styles, different for each type */
 .poketype{
+    font-size: 10px;
     display: inline-block;
     line-height: 1.3em;
     border-radius: 0.4em;
