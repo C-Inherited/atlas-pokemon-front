@@ -6,13 +6,41 @@
       src="{{ trainer.imageUrl }}"
     />
   </div>
-  <div id="app-trainer-details" class="col-5" *ngIf="showDetails">
-    <p class="text">Name: {{ trainer.name }}</p>
-    <p class="text">Hobby: {{ trainer.hobby }}</p>
-    <p class="text">Age: {{ trainer.age }}</p>
-    <button class="btn">New trainer</button>
+  <div class="col-5">
+    <div *ngIf="showDetails&&!createTrainer">
+        <p class="text-left">Name: {{ trainer.name }}</p>
+        <p class="text-left">Hobby: {{ trainer.hobby }}</p>
+        <p class="text-left">Age: {{ trainer.age }}</p>
+      </div>
+      <div *ngIf="createTrainer">
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+            </div>
+            <input type="text" class="form-control col-xs-4">
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Age</span>
+            </div>
+            <input type="number" class="form-control">
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Hobby</span>
+            </div>
+            <input type="text" class="form-control">
+          </div>
+      </div>
+
+    <button *ngIf="!createTrainer" (click)="toggleTrainerCreationMenu()">New trainer</button>
+    <button *ngIf="createTrainer" (click)="createNewTrainer()">Create!</button>
+    <!-- hay que averiguar cómo pasar eventos de padres a hijos,
+    al crear un trainer hay que decirle a traimer list que actualice la lista-->
+    <button *ngIf="createTrainer" (click)="cancelTrainerCreation()">Back</button>
   </div>
 </div>
+
 <div class="row">
   <div class="col">
 
@@ -21,8 +49,7 @@
           *ngFor="let pokemon of pokemons; let i = index"
           [ngClass]="{ 'pokecard': true }"
         >
-          <!-- <img src="{{pokemon.photo}}" height="100"/> -->
-          <img class="pokeimg" src="{{ pokemon.artwork }}" height="100" />
+          <img class="pokeimg" src="{{ pokemon.artwork }}" height="70" />
           <div class="centertext">
             {{ pokemon.id }} - {{ pokemon.name }}<br />
             <p

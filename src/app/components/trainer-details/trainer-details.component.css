@@ -1,7 +1,6 @@
 .text {
   color: black;
-  font-family: "VT323", monospace;
-  font-size: 30px;
+  font-size: 26px;
 }
 
 #trainer-image {
@@ -14,7 +13,16 @@
   margin-right: auto;
 }
 
+.input-group{
+    margin:0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    width: 98%;
+}
+
 .pokelist {
+    padding: 3%;
     position: relative;
     height: fit-content;
     bottom: 0%;
@@ -26,9 +34,10 @@
   }
   
   .pokecard {
-    width: 150px;
-    height: 180px;
+    width: 130px;
+    height: 140px;
     max-height: 280px;
+    padding-top: 0.5%;
     margin: 0.4%;
     border-radius: 1em;
     background-color: white;

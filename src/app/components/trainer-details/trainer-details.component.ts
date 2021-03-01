@@ -15,6 +15,11 @@ export class TrainerDetailsComponent implements OnInit {
 
   showDetails: boolean = false;
   pokemons: Pokemon[] = [];
+  createTrainer: boolean = false;
+
+  name: string = '';
+  hobby: string = '';
+  age: number = 0;
 
   constructor(
     private trainerService: TrainerService,
@@ -111,5 +116,25 @@ export class TrainerDetailsComponent implements OnInit {
     this.pokemons = [];
     this.trainer.team.forEach(simplePokemon => this.getPokemonById(simplePokemon.pokemonId))
     this.showDetails = true;
+  }
+
+  toggleTrainerCreationMenu(){
+    this.createTrainer = true;
+  }
+
+  createNewTrainer(){
+    this.trainerService.postSimpleTrainer(new Trainer(1, this.name, this.hobby, this.age, ''))
+    this.emptyFields();
+    this.createTrainer = false;
+  }
+
+  emptyFields(){
+    this.name = '';
+    this.age = 0;
+    this.hobby = '';
+  }
+
+  cancelTrainerCreation(){
+    this.createTrainer = false;
   }
 }
