@@ -8,9 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'atlas-pokemon-front';
 
-  showAppTrainerDetails(): void {
-    let elementTrainer = document.getElementById('app-trainer-details');
+  constructor() {}
 
-    elementTrainer.style.display = 'block';
+  isTrainerShown: boolean = false;
+
+  showAppTrainerDetails(): void {
+    this.isTrainerShown = true;
+  }
+
+  home(): void {
+    this.isTrainerShown = false;
   }
 }
