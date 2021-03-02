@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonTrainerListComponent } from './pokemon-trainer-list/pokemon-trainer-list.component';
 import { PokemonTrainerDetailsComponent } from './pokemon-trainer-details/pokemon-trainer-details.component';
+import { PokedexComponent } from './components/pokedex/pokedex.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PokemonTrainerDetailsComponent } from './pokemon-trainer-details/pokemo
     TrainerDetailsComponent,
     PokemonListComponent,
     PokemonTrainerListComponent,
-    PokemonTrainerDetailsComponent
+    PokemonTrainerDetailsComponent,
+    PokedexComponent
   ],
   imports: [
     BrowserModule,

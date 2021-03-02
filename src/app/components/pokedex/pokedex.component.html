@@ -1,0 +1,17 @@
+<div>
+    <button (click)="getPreviousPage()">get last page</button>
+
+    <button (click)="getNextPage()">get next page</button>
+</div>
+
+<div class="boke-box">
+
+    <div *ngFor="let pokemon of pokePage">
+
+        <div class="poke-div">
+            <img src="{{pokemon.photo}}" class="img-poke img-fluid">
+            <h5 class="mt-2">{{pokemon.name}}</h5>
+        </div>
+
+    </div>
+</div>
