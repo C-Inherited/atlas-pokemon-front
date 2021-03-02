@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Trainer} from '../common/trainer';
+import {Trainer} from '../common/interfaces';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TrainerService {
   private id = 1;
   readonly baseUrl = 'http://localhost:8080';
@@ -18,27 +19,13 @@ export class TrainerService {
   constructor(private httpClient: HttpClient) {
   }
 
-
-  getTrainers(): Observable<TrainerSimple[]> {
-    return this.httpClient.get<TrainerSimple[]>(this.listOfTrainersUrl);
+  getTrainers(): Observable<Trainer[]> {
+    return this.httpClient.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon);
   }
 
-  getCompleteTrainers(): Observable<TrainerComplete[]> {
-    return this.httpClient.get<TrainerComplete[]>(this.listOfTrainersUrl + this.pokemon);
-  }
-
-  getTrainerById(id: number): Observable<TrainerSimple> {
+  getTrainerById(id: number): Observable<Trainer> {
     this.id = id;
-    console.log(id);
-    console.log(this.completeTrainerByIdUrl);
-    return this.httpClient.get<TrainerSimple>(this.completeTrainerByIdUrl + id);
-  }
-
-  getCompleteTrainerById(id: number): Observable<TrainerComplete> {
-    this.id = id;
-    console.log(id);
-    console.log(this.completeTrainerByIdUrl);
-    return this.httpClient.get<TrainerComplete>(this.completeTrainerByIdUrl + id + this.pokemon);
+    return this.httpClient.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
   }
 
   postSimpleTrainer(body: {id: number, name: string, hobby: string, age: number, imageUrl: string}): Observable <Object>{
@@ -58,31 +45,3 @@ export class TrainerService {
   }
 }
 
-interface TrainerSimple {
-  id: number;
-  name: string;
-  hobby: string;
-  age: number;
-  imageUrl: string;
-}
-
-interface Team {
-  team: PokemonSimple[];
-}
-
-interface PokemonSimple {
-  id: number;
-  pokemonId: number;
-}
-
-interface TrainerComplete {
-  id: number;
-  name: string;
-  hobby: string;
-  age: number;
-  imageUrl: string;
-  team: {
-    id: number;
-    pokemonId: number;
-  }[];
-}

@@ -9,7 +9,7 @@ export class AppComponent {
 
   constructor() {}
 
-  isTrainerShown: boolean = false;
+  isTrainerShown = false;
 
   showAppTrainerList(): void {
     this.isTrainerShown = true;

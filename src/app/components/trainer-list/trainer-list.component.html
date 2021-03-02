@@ -1,26 +1,19 @@
-<app-trainer-details [trainer]="trainer"></app-trainer-details>
-
-<div class="row">
+<div class="container-fluid">
+<div  class="row">
   <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="trainerlist">
-          <div
-            class="trainercard"
-            *ngFor="let trainer of trainers; let i = index"
-            (click)="showTrainerDetails(i)"
-          >
-            <img
-              class="image-trainer"
-              src="{{ trainer.imageUrl }}"
-              height="100"
-            />
-            <p class="text-center">{{ trainer.name }}</p>
+          <div class="trainercard" *ngFor="let trainer of trainers">
+            <a [routerLink]="['/trainers', trainer.id]">
+              <img class="image-trainer" src="{{ trainer.imageUrl }}" height="100" alt="trainer-image" />
+              <p class="text-center">{{ trainer.name }}</p>
+            </a>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
     <button
       class="carousel-control-prev"
       type="button"
