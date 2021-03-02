@@ -5,6 +5,7 @@ import {TrainerDetailsComponent} from './components/trainer-details/trainer-deta
 import {HomeComponentComponent} from './components/home-component/home-component.component';
 import {TrainerListComponent} from './components/trainer-list/trainer-list.component';
 import {PokemonDetailsComponent} from './components/pokemon-details/pokemon-details.component';
+import { PokedexComponent } from './components/pokedex/pokedex.component';
 
 const routes: Routes = [
   {
@@ -16,13 +17,18 @@ const routes: Routes = [
     component: TrainerListComponent
   },
   {
-    path: 'trainers/:chorizo',
+    path: 'trainers/:id',
     component: TrainerDetailsComponent
   },
   {
     path: 'trainers/:id/:idPokemon',
     component: PokemonDetailsComponent
+  },
+  {
+    path: 'pokedex',
+    component: PokedexComponent
   }
+
 
 ];
 

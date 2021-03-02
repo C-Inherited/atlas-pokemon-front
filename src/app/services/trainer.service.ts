@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 
 export class TrainerService {
   private id = 1;
-  readonly baseUrl = 'http://localhost:8080';
+  readonly baseUrl = 'https://atlas-pokemon.herokuapp.com';
   private pokemon = '/pokemon';
   private listOfTrainersUrl = this.baseUrl + '/trainers';
   private completeTrainerByIdUrl = this.baseUrl + '/trainer/';

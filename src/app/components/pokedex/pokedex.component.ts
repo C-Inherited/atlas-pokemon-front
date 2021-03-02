@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../../common/interfaces';
+import { Pokemon } from 'src/app/common/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 
@@ -20,9 +20,7 @@ export class PokedexComponent implements OnInit {
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    //this.getAllPokemon();
-    this.getPage(1);
-    this.showPokemonDetails(this.pokemons[0]);
+    this.setUp();
   }
 
   showPokemonDetails(pokemon: Pokemon): void {
@@ -39,7 +37,6 @@ export class PokedexComponent implements OnInit {
     this.sortPokemons();
     this.pokePage = [];
     for (let i = this.getContentOfPage(index - 1); i < this.getContentOfPage(index); i++) {
-
       this.pokePage.push(this.pokemons[i]);
 
     }
@@ -85,39 +82,25 @@ export class PokedexComponent implements OnInit {
         break;
       }
     }
-
   }
 
   private sortPokemons(): void {
     this.pokemons.sort((a, b) => (a.id > b.id) ? 1 : -1);
   }
 
-  // getAllPokemon(): void {
-  //   for (let i = 1; i < 151; i++) {
-  //     this.pokemonService.getPokemonById(i).subscribe((data) => {
-  //       let types: string[] = [];
-  //       let abilities: string[] = [];
-  //       data.types.forEach((type) => types.push(type.type.name));
-  //       data.abilities.forEach((ability) => abilities.push(ability.ability.name));
-  //       let pokemon: Pokemon = new Pokemon(
-  //         data.id,
-  //         (data.species.name).toUpperCase(),
-  //         data.stats[0].base_stat,
-  //         data.stats[1].base_stat,
-  //         data.stats[2].base_stat,
-  //         data.stats[3].base_stat,
-  //         data.stats[4].base_stat,
-  //         data.stats[5].base_stat,
-  //         types,
-  //         data.height,
-  //         data.weight,
-  //         abilities,
-  //         data.sprites.front_default,
-  //         data.sprites.other['official-artwork'].front_default
-  //       );
-  //       this.pokemons.push(pokemon);
-  //     });
-  //   }
-  // }
-
+  setUp(): void {
+    const pokemons = [];
+    for (let i = 1; i < 151; i++) {
+      this.pokemonService.getPokemonById(i).then(pokemonRaw => {
+        pokemons.push(this.pokemonService.parsePokemonRaw(pokemonRaw));
+      })
+    };
+    Promise.all(pokemons).then(pokemons => {
+      console.log(pokemons[0])
+      this.pokemons = pokemons;
+      this.getPage(1);
+      this.showPokemonDetails(this.pokemons[0]);
+    });
+    
+  }
 }

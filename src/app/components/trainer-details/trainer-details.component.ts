@@ -25,17 +25,19 @@ export class TrainerDetailsComponent implements OnInit {
 
   private getTrainerById(): void {
     this.activatedRoute.params.subscribe(params => {
-      const postId = +params.chorizo;
+      const postId = +params.id;
       this.trainerService.getTrainerById(postId).subscribe((trainer) => {
         trainer.team.forEach((pokemonInfo, index) => {
-          this.pokemonService.getPokemonByTrainerId(pokemonInfo.pokemonId)
-            .subscribe((pokemonObject) => {
-              trainer.team[index].pokemon = pokemonObject;
+          this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
+            .then((pokemonRaw) => {
+              trainer.team[index].pokemon = this.pokemonService.parsePokemonRaw(pokemonRaw);
             });
         });
         this.trainer = trainer;
       });
     });
   }
+
+
 
 }
