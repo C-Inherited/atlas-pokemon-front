@@ -8,13 +8,12 @@ import {Observable} from 'rxjs';
 })
 export class TrainerService {
   private id = 1;
-  private baseUrl = 'http://localhost:8080';
+  readonly baseUrl = 'http://localhost:8080';
   private pokemon = '/pokemon';
-  private listOfTrainersUrl = this.baseUrl+'/trainers';
-  private completeTrainerByIdUrl = this.baseUrl+'/trainer/';
-  private postSimpleTrainerUrl = this.baseUrl+'/trainer';
-  private pokemonCompleteUrl = this.baseUrl+this.pokemon;
-  
+  private listOfTrainersUrl = this.baseUrl + '/trainers';
+  private completeTrainerByIdUrl = this.baseUrl + '/trainer/';
+  private postSimpleTrainerUrl = this.baseUrl + '/trainer';
+  private pokemonCompleteUrl = this.baseUrl + this.pokemon;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -25,7 +24,7 @@ export class TrainerService {
   }
 
   getCompleteTrainers(): Observable<TrainerComplete[]> {
-    return this.httpClient.get<TrainerComplete[]>(this.listOfTrainersUrl+this.pokemon);
+    return this.httpClient.get<TrainerComplete[]>(this.listOfTrainersUrl + this.pokemon);
   }
 
   getTrainerById(id: number): Observable<TrainerSimple> {
@@ -42,20 +41,20 @@ export class TrainerService {
     return this.httpClient.get<TrainerComplete>(this.completeTrainerByIdUrl + id + this.pokemon);
   }
 
-  postSimpleTrainer(body: {id: number, name: string, hobby: string, age: number, imageUrl: string}):Observable<Object>{
+  postSimpleTrainer(body: {id: number, name: string, hobby: string, age: number, imageUrl: string}): Observable <Object>{
     return this.httpClient.post(this.postSimpleTrainerUrl, body);
   }
 
   deleteTrainer(id: number): Observable<any>{
-    return this.httpClient.delete(this.completeTrainerByIdUrl+id)
+    return this.httpClient.delete(this.completeTrainerByIdUrl + id);
   }
 
-  addPokemonToTrainer(body: {pokemonId: number, trainerId: number}):Observable<Object>{ // pokemon id = species id (not unique)
+  addPokemonToTrainer(body: {pokemonId: number, trainerId: number}): Observable <Object>{ // pokemon id = species id (not unique)
     return this.httpClient.post(this.pokemonCompleteUrl, body);
   }
 
   deletePokemonFromTeam(id: number): Observable<any>{  // database id (primary key)
-    return this.httpClient.delete(this.pokemonCompleteUrl +'/'+id)
+    return this.httpClient.delete(this.pokemonCompleteUrl + '/' + id);
   }
 }
 
@@ -85,5 +84,5 @@ interface TrainerComplete {
   team: {
     id: number;
     pokemonId: number;
-  }[]
+  }[];
 }

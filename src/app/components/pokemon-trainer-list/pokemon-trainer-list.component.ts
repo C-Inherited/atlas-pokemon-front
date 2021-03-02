@@ -24,11 +24,11 @@ export class PokemonTrainerListComponent implements OnInit {
 
   getPokemonById(id: number): void {
     this.pokemonService.getPokemonById(id).subscribe((data) => {
-      let types: string[] = [];
-      let abilities: string[] = [];
+      const types: string[] = [];
+      const abilities: string[] = [];
       data.types.forEach((type) => types.push(type.type.name));
       data.abilities.forEach((ability) => abilities.push(ability.ability.name));
-      let pokemon: Pokemon = new Pokemon(
+      const pokemon: Pokemon = new Pokemon(
         data.id,
         data.species.name,
         data.stats[0].base_stat,
@@ -51,11 +51,11 @@ export class PokemonTrainerListComponent implements OnInit {
   getPokemonByName(name: string): void {
     name.toLocaleLowerCase;
     this.pokemonService.getPokemonByName(name).subscribe((data) => {
-      let types: string[] = [];
-      let abilities: string[] = [];
+      const types: string[] = [];
+      const abilities: string[] = [];
       data.types.forEach((type) => types.push(type.type.name));
       data.abilities.forEach((ability) => abilities.push(ability.ability.name));
-      let pokemon: Pokemon = new Pokemon(
+      const pokemon: Pokemon = new Pokemon(
         data.id,
         data.species.name,
         data.stats[0].base_stat,
