@@ -12,7 +12,6 @@ export class PokedexComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
   page: number = 1;
-  totalPages: number = 15;
   pokePage: Pokemon[] = [];
   start = 0;
   pokemonToShow: Pokemon;
