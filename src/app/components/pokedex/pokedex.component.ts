@@ -15,39 +15,77 @@ export class PokedexComponent implements OnInit {
   totalPages: number = 15;
   pokePage: Pokemon[] = [];
   start = 0;
+  pokemonToShow: Pokemon;
 
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
     this.getAllPokemon();
-    // this.sortPokemons();
+    this.getPage(1);
+    this.showPokemonDetails(this.pokemons[0]);
   }
 
-  getNextPage() {
-
-
-    this.pokePage = [];
-    for (let i = 0; i < 150; i++) {
-      if (i >= this.start && i < (20 * this.page) && i < (this.totalPages * 10)) {
-        this.pokePage.push(this.pokemons[i]);
+  showPokemonDetails(pokemon: Pokemon): void {
+    for (const tPokemon of this.pokemons) {
+      if (tPokemon.id === pokemon.id) {
+        this.pokemonToShow = tPokemon;
       }
+    }
+  }
+
+
+  getPage(index: number) {
+
+    this.sortPokemons();
+    this.pokePage = [];
+    for (let i = this.getContentOfPage(index - 1); i < this.getContentOfPage(index); i++) {
+
+      this.pokePage.push(this.pokemons[i]);
+
     }
     this.start = this.start >= 130 ? 130 : this.start + 20;
     this.page = this.page >= 8 ? 8 : this.page + 1;
   }
 
-  getPreviousPage() {
-
-
-    this.pokePage = [];
-    for (let i = 0; i < 150; i++) {
-      if (i >= this.start && i < (20 * this.page) && i < (this.totalPages * 10)) {
-        this.pokePage.push(this.pokemons[i]);
+  getContentOfPage(index: number): number {
+    switch (index) {
+      case 0: {
+        return 0;
+      }
+      case 1: {
+        return 20;
+        break;
+      }
+      case 2: {
+        return 40;
+        break;
+      }
+      case 3: {
+        return 60;
+        break;
+      }
+      case 4: {
+        return 80;
+        break;
+      }
+      case 5: {
+        return 100;
+        break;
+      }
+      case 6: {
+        return 120;
+        break;
+      }
+      case 7: {
+        return 140;
+        break;
+      }
+      case 8: {
+        return 150;
+        break;
       }
     }
-    this.start = this.start < 0 ? 0 : this.start - 20;
-    this.page = this.page < 2 ? 1 : this.page - 1;
 
   }
 
@@ -64,7 +102,7 @@ export class PokedexComponent implements OnInit {
         data.abilities.forEach((ability) => abilities.push(ability.ability.name));
         let pokemon: Pokemon = new Pokemon(
           data.id,
-          data.species.name,
+          (data.species.name).toUpperCase(),
           data.stats[0].base_stat,
           data.stats[1].base_stat,
           data.stats[2].base_stat,

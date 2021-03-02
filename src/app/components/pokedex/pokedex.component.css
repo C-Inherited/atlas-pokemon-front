@@ -17,3 +17,22 @@
 .poke-box{
     display: flex;
 }
+
+.bottom-menu {
+    text-align: center;
+    margin: 35px;
+}
+
+.big-img{
+    
+    
+}
+
+.poke-stats{
+    background-color:rgb(223, 223, 223);
+    padding: 10px;
+}
+
+.pokedex{
+    background-color: rgb(163, 45, 45);
+}
