@@ -8,8 +8,11 @@ import { TrainerListComponent } from './components/trainer-list/trainer-list.com
 import { TrainerDetailsComponent } from './components/trainer-details/trainer-details.component';
 import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
-import { PokemonTrainerListComponent } from './pokemon-trainer-list/pokemon-trainer-list.component';
-import { PokemonTrainerDetailsComponent } from './pokemon-trainer-details/pokemon-trainer-details.component';
+import { PokemonTrainerListComponent } from './components/pokemon-trainer-list/pokemon-trainer-list.component';
+import { PokemonTrainerDetailsComponent } from './components/pokemon-trainer-details/pokemon-trainer-details.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NavBarComponentComponent } from './components/nav-bar-component/nav-bar-component.component';
+import { HomeComponentComponent } from './components/home-component/home-component.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,15 @@ import { PokemonTrainerDetailsComponent } from './pokemon-trainer-details/pokemo
     TrainerDetailsComponent,
     PokemonListComponent,
     PokemonTrainerListComponent,
-    PokemonTrainerDetailsComponent
+    PokemonTrainerDetailsComponent,
+    NavBarComponentComponent,
+    HomeComponentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

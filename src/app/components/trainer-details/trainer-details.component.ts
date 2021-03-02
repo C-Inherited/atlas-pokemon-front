@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TrainerService } from '../../services/trainer.service';
 import { Trainer } from '../../common/trainer';
 import { PokemonService } from '../../services/pokemon.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-trainer-details',
@@ -12,11 +13,13 @@ export class TrainerDetailsComponent implements OnInit {
   @Input()
   trainer: Trainer = new Trainer(0, '', '', 0, '');
 
-  showDetails: boolean = false;
+  showDetails = false;
 
   constructor(
     private trainerService: TrainerService,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,34 +27,46 @@ export class TrainerDetailsComponent implements OnInit {
     // this.getCompleteTrainerById(1);
   }
 
-  private getTrainerById(id: number): void {
-    this.trainerService.getTrainerById(id).subscribe((trainer) => {
-      console.log(trainer);
-      this.trainer = new Trainer(
-        trainer.id,
-        trainer.name,
-        trainer.hobby,
-        trainer.age,
-        trainer.imageUrl
-      );
-    });
+  private getTrainerById(): void {
+    const checkHasTrainerId: boolean = this.activatedRoute.snapshot.paramMap.has('trainerId');
+    if (checkHasTrainerId){
+    const postId: number = Number(this.activatedRoute.snapshot.paramMap.get('trainerId'));
+    this.trainerService.getTrainerById(postId).subscribe((trainer) => {
+        this.trainer = new Trainer(
+          trainer.id,
+          trainer.name,
+          trainer.hobby,
+          trainer.age,
+          trainer.imageUrl
+        );
+      });
+    }
   }
 
-  private getCompleteTrainerById(id: number): void {
-    this.trainerService.getCompleteTrainerById(id).subscribe((trainer) => {
-      console.log(trainer);
-      this.trainer = new Trainer(
-        trainer.id,
-        trainer.name,
-        trainer.hobby,
-        trainer.age,
-        trainer.imageUrl
-      );
-      //todo need to implement the algorithm to parse the id from the service response and call the pookemon service to get the complete pokemon datas
-    });
+  private getCompleteTrainerById(): void {
+    const checkHasTrainerId: boolean = this.activatedRoute.snapshot.paramMap.has('trainerId');
+    if (checkHasTrainerId) {
+      const postId: number = Number(this.activatedRoute.snapshot.paramMap.get('trainerId'));
+      this.trainerService.getCompleteTrainerById(postId).subscribe((trainer) => {
+        console.log(trainer);
+        this.trainer = new Trainer(
+          trainer.id,
+          trainer.name,
+          trainer.hobby,
+          trainer.age,
+          trainer.imageUrl
+        );
+        // tslint:disable-next-line:max-line-length
+        // todo need to implement the algorithm to parse the id from the service response and call the pookemon service to get the complete pokemon datas
+      });
+    }
   }
 
-  showTrainerDetails(trainer: Trainer) {
+  goHome(): void{
+    this.router.navigate(['/home']);
+  }
+
+  showTrainerDetails(trainer: Trainer): void {
     this.trainer = trainer;
     this.showDetails = true;
   }
