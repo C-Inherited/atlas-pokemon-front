@@ -12,6 +12,7 @@ import { PokemonTrainerListComponent } from './pokemon-trainer-list/pokemon-trai
 import { PokemonTrainerDetailsComponent } from './pokemon-trainer-details/pokemon-trainer-details.component';
 import { PokedexComponent } from './components/pokedex/pokedex.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

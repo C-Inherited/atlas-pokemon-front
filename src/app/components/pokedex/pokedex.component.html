@@ -1,17 +1,54 @@
-<div>
-    <button (click)="getPreviousPage()">get last page</button>
+<div class="container pokedex">
+    <h1>Pokedex</h1>
+    <div class="row">
+        <div class="col-sm-6">
 
-    <button (click)="getNextPage()">get next page</button>
-</div>
+            <div class="boke-box">
 
-<div class="boke-box">
+                <div *ngFor="let pokemon of pokePage" (click)="showPokemonDetails(pokemon)">
 
-    <div *ngFor="let pokemon of pokePage">
+                    <!--   -->
+                    <div class="poke-div">
+                        <img src="{{pokemon.photo}}" class="img-poke img-fluid">
+                        <!-- <h5 class="mt-2">{{pokemon.name}}</h5> -->
+                    </div>
 
-        <div class="poke-div">
-            <img src="{{pokemon.photo}}" class="img-poke img-fluid">
-            <h5 class="mt-2">{{pokemon.name}}</h5>
+                </div>
+            </div>
+
+            <div class="bottom-menu">
+                <button (click)="getPage(1)">1</button>
+                <button (click)="getPage(2)">2</button>
+                <button (click)="getPage(3)">3</button>
+                <button (click)="getPage(4)">4</button>
+                <button (click)="getPage(5)">5</button>
+                <button (click)="getPage(6)">6</button>
+                <button (click)="getPage(7)">7</button>
+                <button (click)="getPage(8)">8</button>
+
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <img src="{{pokemonToShow.artwork}}" class="img-fluid big-img mt-8">
+        </div>
+        <div class="col-sm-3 ">
+            <div class="poke-stats">
+                <h2>Name: {{pokemonToShow.name}}</h2>
+                <p>Hp: {{pokemonToShow.hp}}</p>
+                <p>Attack: {{pokemonToShow.attack}}</p>
+                <p>Defense: {{pokemonToShow.defense}}</p>
+                <p>SpecialAttack: {{pokemonToShow.special_attack}}</p>
+                <p>SpecialDefense: {{pokemonToShow.special_defense}}</p>
+                <p>Speed: {{pokemonToShow.speed}}</p>
+                <p>Types: {{pokemonToShow.types}}</p>
+                <p>Height: {{pokemonToShow.height}}</p>
+                <p>Weight: {{pokemonToShow.weight}}</p>
+                <p>Abilities: {{pokemonToShow.abilities}}</p>
+            </div>
+
         </div>
 
     </div>
+
 </div>
