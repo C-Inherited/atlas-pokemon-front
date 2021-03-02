@@ -9,7 +9,7 @@ import { TrainerService } from '../../services/trainer.service';
 })
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
-  trainer: Trainer;
+  trainer: Trainer = new Trainer(0, '', '', 0, 'https://icons-for-free.com/iconfiles/png/512/Pokemon+Trainer+Boy-1320568182989073723.png');
 
   @Output() showTrainerDetailsEvent = new EventEmitter();
 

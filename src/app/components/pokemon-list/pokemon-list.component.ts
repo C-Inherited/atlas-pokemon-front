@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { Pokemon } from 'src/app/common/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
@@ -7,7 +7,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css'],
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, OnChanges {
   @Input() team: { id: number; pokemonId: number }[] = [];
 
   pokemons: Pokemon[] = [];
@@ -15,21 +15,25 @@ export class PokemonListComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
+  }
+  
+  ngOnChanges(changes: SimpleChanges) {
     this.pokemons = [];
-    for (const simplePokemon of this.team) {
+    for (const simplePokemon of changes.team.currentValue) {
       this.getPokemonById(simplePokemon.pokemonId);
     }
   }
 
-  getPokemonById(id: number): void {
+  getPokemonById(id: number): Pokemon {
+    let pokemon: Pokemon;
     this.pokemonService.getPokemonById(id).subscribe((data) => {
       let types: string[] = [];
       let abilities: string[] = [];
       data.types.forEach((type) => types.push(type.type.name));
       data.abilities.forEach((ability) => abilities.push(ability.ability.name));
-      let pokemon: Pokemon = new Pokemon(
+      pokemon = new Pokemon(
         data.id,
-        data.species.name,
+        data.species.name.charAt(0).toLocaleUpperCase() + data.species.name.slice(1),
         data.stats[0].base_stat,
         data.stats[1].base_stat,
         data.stats[2].base_stat,
@@ -45,6 +49,7 @@ export class PokemonListComponent implements OnInit {
       );
       this.pokemons.push(pokemon);
     });
+    return pokemon
   }
 
   getPokemonByName(name: string): void {
@@ -56,7 +61,7 @@ export class PokemonListComponent implements OnInit {
       data.abilities.forEach((ability) => abilities.push(ability.ability.name));
       let pokemon: Pokemon = new Pokemon(
         data.id,
-        data.species.name,
+        data.species.name.charAt(0).toLocaleUpperCase() + data.species.name.slice(1),
         data.stats[0].base_stat,
         data.stats[1].base_stat,
         data.stats[2].base_stat,

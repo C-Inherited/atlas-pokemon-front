@@ -1,39 +1,43 @@
-<div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="trainerlist">
-        <div
-          class="trainercard"
-          *ngFor="let trainer of trainers; let i = index"
-          (click)="showTrainerDetails(i)"
-        >
-          <img
-            class="image-trainer"
-            src="{{ trainer.imageUrl }}"
-            height="100"
-          />
-          <p class="text-center">{{ trainer.name }}</p>
+<app-trainer-details [trainer]="trainer"></app-trainer-details>
+
+<div class="row">
+  <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="trainerlist">
+          <div
+            class="trainercard"
+            *ngFor="let trainer of trainers; let i = index"
+            (click)="showTrainerDetails(i)"
+          >
+            <img
+              class="image-trainer"
+              src="{{ trainer.imageUrl }}"
+              height="100"
+            />
+            <p class="text-center">{{ trainer.name }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselControls"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselControls"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselControls"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselControls"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>

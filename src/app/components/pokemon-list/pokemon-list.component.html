@@ -1,11 +1,10 @@
 <div class="pokelist">
   <div
     *ngFor="let pokemon of pokemons; let i = index"
-    (click)="showPokemon(i)"
-    [ngClass]="{ pokecard: true }"
+    [ngClass]="{ 'pokecard': true }"
   >
     <!-- <img src="{{pokemon.photo}}" height="100"/> -->
-    <img class="pokeimg" src="{{ pokemon.artwork }}" height="100" />
+    <img class="pokeimg" src="{{ pokemon.artwork }}" height="70" />
     <div class="centertext">
       {{ pokemon.id }} - {{ pokemon.name }}<br />
       <p
@@ -42,4 +41,6 @@
             <app-pokemon-details *ngIf="pokemon.show" [pokemon]="pokemon"></app-pokemon-details>
         -->
   </div>
+
 </div>
+

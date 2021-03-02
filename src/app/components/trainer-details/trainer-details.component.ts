@@ -14,7 +14,6 @@ export class TrainerDetailsComponent implements OnInit {
   trainer: Trainer = new Trainer(0, '', '', 0, '');
 
   showDetails: boolean = false;
-  pokemons: Pokemon[] = [];
   createTrainer: boolean = false;
 
   name: string = '';
@@ -56,66 +55,6 @@ export class TrainerDetailsComponent implements OnInit {
       );
       //todo need to implement the algorithm to parse the id from the service response and call the pookemon service to get the complete pokemon datas
     });
-  }
-
-  getPokemonById(id: number): void {
-    this.pokemonService.getPokemonById(id).subscribe((data) => {
-      let types: string[] = [];
-      let abilities: string[] = [];
-      data.types.forEach((type) => types.push(type.type.name));
-      data.abilities.forEach((ability) => abilities.push(ability.ability.name));
-      let pokemon: Pokemon = new Pokemon(
-        data.id,
-        data.species.name.charAt(0).toLocaleUpperCase() + data.species.name.slice(1),
-        data.stats[0].base_stat,
-        data.stats[1].base_stat,
-        data.stats[2].base_stat,
-        data.stats[3].base_stat,
-        data.stats[4].base_stat,
-        data.stats[5].base_stat,
-        types,
-        data.height,
-        data.weight,
-        abilities,
-        data.sprites.front_default,
-        data.sprites.other['official-artwork'].front_default
-      );
-      this.pokemons.push(pokemon);
-    });
-  }
-
-  getPokemonByName(name: string): void {
-    name.toLocaleLowerCase;
-    this.pokemonService.getPokemonByName(name).subscribe((data) => {
-      let types: string[] = [];
-      let abilities: string[] = [];
-      data.types.forEach((type) => types.push(type.type.name));
-      data.abilities.forEach((ability) => abilities.push(ability.ability.name));
-      let pokemon: Pokemon = new Pokemon(
-        data.id,
-        data.species.name.charAt(0).toLocaleUpperCase() + data.species.name.slice(1),
-        data.stats[0].base_stat,
-        data.stats[1].base_stat,
-        data.stats[2].base_stat,
-        data.stats[3].base_stat,
-        data.stats[4].base_stat,
-        data.stats[5].base_stat,
-        types,
-        data.height,
-        data.weight,
-        abilities,
-        data.sprites.front_default,
-        data.sprites.other['official-artwork'].front_default
-      );
-      this.pokemons.push(pokemon);
-    });
-  }
-
-  showTrainerDetails(trainer: Trainer) {
-    this.trainer = trainer;
-    this.pokemons = [];
-    this.trainer.team.forEach(simplePokemon => this.getPokemonById(simplePokemon.pokemonId))
-    this.showDetails = true;
   }
 
   toggleTrainerCreationMenu(){

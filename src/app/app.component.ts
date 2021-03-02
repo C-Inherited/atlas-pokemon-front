@@ -12,7 +12,7 @@ export class AppComponent {
 
   isTrainerShown: boolean = false;
 
-  showAppTrainerDetails(): void {
+  showAppTrainerList(): void {
     this.isTrainerShown = true;
   }
 
