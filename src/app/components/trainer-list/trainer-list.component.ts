@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Trainer } from '../../common/trainer';
+import { Trainer} from '../../common/interfaces';
 import { TrainerService } from '../../services/trainer.service';
 
 @Component({
@@ -7,9 +7,9 @@ import { TrainerService } from '../../services/trainer.service';
   templateUrl: './trainer-list.component.html',
   styleUrls: ['./trainer-list.component.css'],
 })
+
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
-  trainer: Trainer = new Trainer(0, '', '', 0, 'https://icons-for-free.com/iconfiles/png/512/Pokemon+Trainer+Boy-1320568182989073723.png');
 
   @Output() showTrainerDetailsEvent = new EventEmitter();
 
@@ -22,63 +22,10 @@ export class TrainerListComponent implements OnInit {
   private listTrainers(): void {
     this.trainers = [];
     this.trainerService
-      .getCompleteTrainers()
-      .subscribe((simpleTrainersList) => {
-        for (const simpleTrainer of simpleTrainersList) {
-          let team = [];
-          for (const simplePokemon of simpleTrainer.team) {
-            team.push({
-              id: simplePokemon.id,
-              pokemonId: simplePokemon.pokemonId,
-            });
-          }
-          let trainer = new Trainer(
-            simpleTrainer.id,
-            simpleTrainer.name,
-            simpleTrainer.hobby,
-            simpleTrainer.age,
-            simpleTrainer.imageUrl
-          );
-          trainer.team = team;
-          this.trainers.push(trainer);
-        }
+      .getTrainers()
+      .subscribe((trainerList) => {
+        this.trainers = trainerList;
       });
   }
 
-  postTrainer(trainer: {
-    id: number;
-    name: string;
-    hobby: string;
-    age: number;
-    imageUrl: string;
-  }): void {
-    this.trainerService.postSimpleTrainer(trainer).subscribe((result) => {
-      this.listTrainers();
-    });
-  }
-
-  deleteTrainer(id: number): void {
-    this.trainerService.deleteTrainer(id).subscribe((result) => {
-      this.listTrainers();
-    });
-  }
-
-  addPokemon(pokemon: { pokemonId: number; trainerId: number }): void {
-    this.trainerService.addPokemonToTrainer(pokemon).subscribe((result) => {
-      this.listTrainers();
-    });
-  }
-
-  deletePokemon(id: number): void {
-    this.trainerService.deletePokemonFromTeam(id).subscribe((result) => {
-      this.listTrainers();
-    });
-  }
-
-  showTrainerDetails(index: number): void {
-    this.trainers.forEach((trainer) => (trainer.showTeam = false));
-    this.trainer = this.trainers[index];
-    this.trainer.showTeam = true;
-    this.showTrainerDetailsEvent.emit(this.trainer);
-  }
 }

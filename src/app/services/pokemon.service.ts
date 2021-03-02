@@ -1,59 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Pokemon} from '../common/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
+  readonly url = 'https://pokeapi.co/api/v2';
+
   constructor(
-    private http: HttpClient,
+    private http: HttpClient
   ) { }
 
-  getAllPokemon(): Observable<PokemonRaw[]> {
-    return this.http.get<PokemonRaw[]>('https:pokeapi.co/api/v2/pokemon?limit=150');
-
+  getAllPokemon(): Observable<Pokemon[]> {
+    return this.http.get<Pokemon[]>(this.url + '/pokemon?limit=150');
   }
 
-  getPokemonById(id: number): Observable<PokemonRaw> {
-    return this.http.get<PokemonRaw>('https:pokeapi.co/api/v2/pokemon/' + id);
+  getPokemonByTrainerId(id: number): Observable<Pokemon> {
+    return this.http.get<Pokemon>(this.url + '/pokemon/' + id);
   }
 
-  getPokemonByName(name: string): Observable<PokemonRaw> {
-    return this.http.get<PokemonRaw>('https:pokeapi.co/api/v2/pokemon/' + name);
+  getPokemonByName(name: string): Observable<Pokemon> {
+    return this.http.get<Pokemon>(this.url + '/pokemon/' + name);
   }
 }
 
-interface PokemonRaw {
-  id: number
-  species: {
-    name: string
-  },
-  stats: {
-    base_stat: number,
-    stat: {
-      name: string
-    }
-  }[],
-  types: {
-    type: {
-      name: string
-    }
-  }[],
-  sprites: {
-    front_default: string,
-    other: {
-      "official-artwork": {
-        front_default
-      }
-    }
-  },
-  weight: number,
-  height: number,
-  abilities: {
-    ability: {
-      name: string
-    }
-  }[]
-}
+
+

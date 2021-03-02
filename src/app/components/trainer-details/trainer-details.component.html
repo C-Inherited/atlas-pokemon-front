@@ -1,54 +1,30 @@
-<div class="row justify-content-md-center">
-  <div class="col-7">
-    <img
-      id="trainer-image"
-      class="float-right d-block"
-      src="{{ trainer.imageUrl }}"
-    />
-  </div>
-  <div class="col-5">
-    <div *ngIf="!createTrainer">
-        <p class="text-left">Name: {{ trainer.name }}</p>
-        <p class="text-left">Hobby: {{ trainer.hobby }}</p>
-        <p class="text-left">Age: {{ trainer.age }}</p>
+<main>
+  <div class="container rounded shadow-sm pt-4 pb-5">
+    <div class="row" *ngIf="trainer !== undefined">
+      <div class="col-4">
+        <img
+          id="trainer-image"
+          class="float-right d-block"
+          src="{{ trainer.imageUrl }}"
+         alt="trainer image"/>
       </div>
-      <div *ngIf="createTrainer">
-        <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
-            </div>
-            <input type="text" class="form-control col-xs-4">
-          </div>
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Age</span>
-            </div>
-            <input type="number" class="form-control">
-          </div>
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Hobby</span>
-            </div>
-            <input type="text" class="form-control">
-          </div>
+      <div class="col-8">
+        <p>Name: {{trainer.name}}</p>
+        <p>Age: {{trainer.age}}</p>
+        <p>Hobby: {{trainer.hobby}}</p>
       </div>
-
-    <button *ngIf="!createTrainer" (click)="toggleTrainerCreationMenu()">New trainer</button>
-    <button *ngIf="createTrainer" (click)="createNewTrainer()">Create!</button>
-    <!-- hay que averiguar cómo pasar eventos de padres a hijos,
-    al crear un trainer hay que decirle a traimer list que actualice la lista-->
-    <button *ngIf="createTrainer" (click)="cancelTrainerCreation()">Back</button>
+      <div class="col-12">
+        <div *ngFor="let partner of trainer.team ">
+          {{ partner.pokemon.name }}
+          {{ partner.pokemon.id }}
+          {{ partner.pokemon.types }}
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="trainer === undefined">
+      <div class="col-12">
+        <h3>No hay entrenador a mostrar</h3>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col pokelist">
-    <app-pokemon-list [team]="trainer.team"></app-pokemon-list>
-
-  </div>
-</div>
- <!--
-   <app-trainer-list
-    (showTrainerDetailsEvent)="showTrainerDetails($event)"
-  ></app-trainer-list>
- --> 
+</main>

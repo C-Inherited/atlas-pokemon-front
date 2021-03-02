@@ -6,17 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar-component.component.css']
 })
 export class NavBarComponentComponent implements OnInit {
-  title = 'atlas-pokemon-front';
-
-  isTrainerShown = false;
-
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  home(): void {
-    this.isTrainerShown = false;
   }
 
 }
