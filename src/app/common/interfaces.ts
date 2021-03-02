@@ -1,3 +1,4 @@
+import { Pokemon } from "./pokemon";
 
 export interface Trainer {
   id: number;
@@ -12,22 +13,37 @@ export interface Trainer {
   }[];
 }
 
-export interface Pokemon {
-  id: number;
-  name: string;
-  hp: number;
-  attack: number;
-  defense: number;
-  special_attack: number;
-  special_defense: number;
-  speed: number;
-  types: string[];
-  height: number;
-  weight: number;
-  abilities: string[];
-  photo: string;
-  artwork: string;
-  show: boolean;
+export interface PokemonRaw {
+  id: number
+  species: {
+    name: string
+  },
+  stats: {
+    base_stat: number,
+    stat: {
+      name: string
+    }
+  }[],
+  types: {
+    type: {
+      name: string
+    }
+  }[],
+  sprites: {
+    front_default: string,
+    other: {
+      "official-artwork": {
+        front_default
+      }
+    }
+  },
+  weight: number,
+  height: number,
+  abilities: {
+    ability: {
+      name: string,
+      url: string
+    }
+  }[],
+  is_hidden: boolean
 }
-
-

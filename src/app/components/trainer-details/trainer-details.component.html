@@ -14,10 +14,8 @@
         <p>Hobby: {{trainer.hobby}}</p>
       </div>
       <div class="col-12">
-        <div *ngFor="let partner of trainer.team ">
-          {{ partner.pokemon.name }}
-          {{ partner.pokemon.id }}
-          {{ partner.pokemon.types }}
+        <div *ngFor="let pokemon of trainer.team ">
+          <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
         </div>
       </div>
     </div>
