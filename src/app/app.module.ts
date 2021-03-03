@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 import { TrainerListComponent } from './components/trainer-list/trainer-list.component';
 import { TrainerDetailsComponent } from './components/trainer-details/trainer-details.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import { PokedexComponent } from './components/pokedex/pokedex.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavBarComponentComponent } from './components/nav-bar-component/nav-bar-component.component';
 import { HomeComponentComponent } from './components/home-component/home-component.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    IvyCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

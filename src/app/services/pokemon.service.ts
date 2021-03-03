@@ -30,8 +30,8 @@ export class PokemonService {
 
   parsePokemonRaw(pokemonRaw: PokemonRaw): Pokemon{
     let pokemon: Pokemon;
-    let types: string[] = [];
-    let abilities: string[] = [];
+    const types: string[] = [];
+    const abilities: string[] = [];
     pokemonRaw.types.forEach((type) => types.push(type.type.name));
     pokemonRaw.abilities.forEach((ability) => abilities.push(ability.ability.name));
     pokemon = new Pokemon(
