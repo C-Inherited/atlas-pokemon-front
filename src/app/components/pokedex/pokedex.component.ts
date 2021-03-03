@@ -15,7 +15,7 @@ export class PokedexComponent implements OnInit {
   page = 1;
   pokePage: Pokemon[] = [];
   pokemonToShow: Pokemon;
-
+  show = false;
 
   constructor(
     private pokemonService: PokemonService,
@@ -24,6 +24,10 @@ export class PokedexComponent implements OnInit {
   ngOnInit(): void {
     this.getPage(1);
     this.showPokemonDetails(this.pokePage[0]);
+  }
+
+  showPokedex(): void{
+    this.show = true
   }
 
   showPokemonDetails(pokemon: Pokemon): void {
