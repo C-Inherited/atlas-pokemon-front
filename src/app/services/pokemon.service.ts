@@ -15,13 +15,12 @@ export class PokemonService {
     private http: HttpClient
   ) { }
 
-  async getAllPokemon(): Promise<PokemonRaw[]> {
-    return await this.http.get<PokemonRaw[]>(this.url + '/pokemon?limit=150').toPromise();
+  getAllPokemon(): Observable<PokemonRaw[]> {
+    return this.http.get<PokemonRaw[]>(this.url + '/pokemon?limit=150');
   }
 
-  async getPokemonById(id: number): Promise<PokemonRaw> {
-    const data = await this.http.get<PokemonRaw>(this.url + '/pokemon/' + id).toPromise();
-    return data;
+  getPokemonById(id: number): Observable<PokemonRaw> {
+    return this.http.get<PokemonRaw>(this.url + '/pokemon/' + id);
   }
 
   getPokemonByName(name: string): Observable<PokemonRaw> {

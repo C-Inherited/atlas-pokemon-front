@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'pokedex',
     component: PokedexComponent
+  },
+  {
+    path: 'pokedex/:id',
+    component: PokedexComponent
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/app/common/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
@@ -13,94 +14,47 @@ export class PokedexComponent implements OnInit {
   pokemons: Pokemon[] = [];
   page = 1;
   pokePage: Pokemon[] = [];
-  start = 0;
   pokemonToShow: Pokemon;
 
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(
+    private pokemonService: PokemonService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.setUp();
+    this.getPage(1);
+    this.showPokemonDetails(this.pokePage[0]);
   }
 
   showPokemonDetails(pokemon: Pokemon): void {
-    for (const tPokemon of this.pokemons) {
-      if (tPokemon.id === pokemon.id) {
-        this.pokemonToShow = tPokemon;
-      }
-    }
-  }
+    this.activatedRoute.params.subscribe(params => {
+      this.pokemonToShow = pokemon;
+  })
+}
 
 
   getPage(index: number): void {
 
-    this.sortPokemons();
+    this.page = index;
     this.pokePage = [];
-    for (let i = this.getContentOfPage(index - 1); i < this.getContentOfPage(index); i++) {
-      this.pokePage.push(this.pokemons[i]);
-
-    }
-    this.start = this.start >= 130 ? 130 : this.start + 20;
-    this.page = this.page >= 8 ? 8 : this.page + 1;
-  }
-
-  getContentOfPage(index: number): number {
-    switch (index) {
-      case 0: {
-        return 0;
-      }
-      case 1: {
-        return 20;
-        break;
-      }
-      case 2: {
-        return 40;
-        break;
-      }
-      case 3: {
-        return 60;
-        break;
-      }
-      case 4: {
-        return 80;
-        break;
-      }
-      case 5: {
-        return 100;
-        break;
-      }
-      case 6: {
-        return 120;
-        break;
-      }
-      case 7: {
-        return 140;
-        break;
-      }
-      case 8: {
-        return 150;
-        break;
-      }
+    for (let i = (index - 1)*20 +1; i <= index*20; i++) {
+      this.pokemonService.getPokemonById(i).subscribe(pokemonRaw => {
+        this.pokePage.push(this.pokemonService.parsePokemonRaw(pokemonRaw));
+        this.sortPokemons();
+      })
     }
   }
+
 
   private sortPokemons(): void {
-    this.pokemons.sort((a, b) => (a.id > b.id) ? 1 : -1);
+    this.pokePage.sort((a, b) => (a.id > b.id) ? 1 : -1);
   }
 
-  setUp(): void {
-    const pokemons = [];
+  getAllPokemon(): void {
     for (let i = 1; i < 151; i++) {
-      this.pokemonService.getPokemonById(i).then(pokemonRaw => {
-        pokemons.push(this.pokemonService.parsePokemonRaw(pokemonRaw));
+      this.pokemonService.getPokemonById(i).subscribe(pokemonRaw => {
+        this.pokemons.push(this.pokemonService.parsePokemonRaw(pokemonRaw));
       })
     };
-    Promise.all(pokemons).then(pokemons => {
-      console.log(pokemons[0])
-      this.pokemons = pokemons;
-      this.getPage(1);
-      this.showPokemonDetails(this.pokemons[0]);
-    });
-    
   }
 }

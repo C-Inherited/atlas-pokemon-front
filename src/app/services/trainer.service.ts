@@ -16,32 +16,32 @@ export class TrainerService {
   private postSimpleTrainerUrl = this.baseUrl + '/trainer';
   private pokemonCompleteUrl = this.baseUrl + this.pokemon;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   getTrainers(): Observable<Trainer[]> {
-    return this.httpClient.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon);
+    return this.http.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon);
   }
 
   getTrainerById(id: number): Observable<Trainer> {
     this.id = id;
-    return this.httpClient.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
+    return this.http.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
   }
 
   postSimpleTrainer(body: {id: number, name: string, hobby: string, age: number, imageUrl: string}): Observable <Object>{
-    return this.httpClient.post(this.postSimpleTrainerUrl, body);
+    return this.http.post(this.postSimpleTrainerUrl, body);
   }
 
   deleteTrainer(id: number): Observable<any>{
-    return this.httpClient.delete(this.completeTrainerByIdUrl + id);
+    return this.http.delete(this.completeTrainerByIdUrl + id);
   }
 
   addPokemonToTrainer(body: {pokemonId: number, trainerId: number}): Observable <Object>{ // pokemon id = species id (not unique)
-    return this.httpClient.post(this.pokemonCompleteUrl, body);
+    return this.http.post(this.pokemonCompleteUrl, body);
   }
 
   deletePokemonFromTeam(id: number): Observable<any>{  // database id (primary key)
-    return this.httpClient.delete(this.pokemonCompleteUrl + '/' + id);
+    return this.http.delete(this.pokemonCompleteUrl + '/' + id);
   }
 }
 

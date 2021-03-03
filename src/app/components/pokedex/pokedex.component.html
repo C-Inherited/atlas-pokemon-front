@@ -2,14 +2,11 @@
     <h1>Pokedex</h1>
     <div class="row">
         <div class="col-sm-6">
-
             <div class="boke-box">
-
                 <div *ngFor="let pokemon of pokePage" (click)="showPokemonDetails(pokemon)">
-
-                    <!--   -->
                     <div class="poke-div">
                         <img src="{{pokemon.photo}}" class="img-poke img-fluid">
+                        <p class="pokemonId">{{pokemon.id}}</p>
                         <!-- <h5 class="mt-2">{{pokemon.name}}</h5> -->
                     </div>
 
@@ -34,7 +31,7 @@
         </div>
         <div class="col-sm-3 ">
             <div class="poke-stats">
-                <h2>Name: {{pokemonToShow.name}}</h2>
+                <h3>{{pokemonToShow.id}} - {{pokemonToShow.name}}</h3>
                 <p>Hp: {{pokemonToShow.hp}}</p>
                 <p>Attack: {{pokemonToShow.attack}}</p>
                 <p>Defense: {{pokemonToShow.defense}}</p>
