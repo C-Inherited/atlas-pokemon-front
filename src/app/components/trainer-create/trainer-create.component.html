@@ -45,8 +45,14 @@
             <label>Photo</label>
           </div>
           <div class="col">
-            <input formControlName="photo" type="text" name="photo" placeholder="Introduce photo"/>
-            <span class="error-msg" *ngIf="photoField.hasError('required') && photoField.touched">Photo is required</span>
+            <select formControlName="photo" class="form-select" aria-label="Default select example" placeholder="Select photo">
+              <option selected>Open this select menu</option>
+              <option value="1">One Image url</option>
+              <option value="2">Two Image Url</option>
+              <option value="3">Three image url</option>
+            </select>
+<!--            <input formControlName="photo" type="text" name="photo" placeholder="Introduce photo"/>-->
+            <span class="error-msg" *ngIf="photoField.hasError('required')">Photo is required</span>
           </div>
         </div>
       </div>
