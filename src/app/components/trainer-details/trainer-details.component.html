@@ -6,7 +6,7 @@
           id="trainer-image"
           class="float-right d-block"
           src="{{ trainer.imageUrl }}"
-         alt="trainer image"/>
+          alt="trainer image"/>
       </div>
       <div class="col-8">
         <p>Name: {{trainer.name}}</p>
@@ -14,10 +14,15 @@
         <p>Hobby: {{trainer.hobby}}</p>
       </div>
       <div class="col-12">
-        <div *ngFor="let pokemon of trainer.team ">
-          <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
+        <div class="pokelist">
+          <div *ngFor="let pokemon of trainer.team ">
+            <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="row">
+    <app-trainer-list></app-trainer-list>
     </div>
     <div class="row" *ngIf="trainer === undefined">
       <div class="col-12">

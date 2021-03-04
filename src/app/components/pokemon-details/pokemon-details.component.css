@@ -1,4 +1,179 @@
 .text{
-    line-height: 1.5em; 
+    line-height: 1.5em;
     text-align: center;
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 130px;
+  height: 140px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+}
+
+/* Style the back side */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.pokecard {
+  width: 130px;
+  height: 140px;
+  padding-top: 0.5%;
+  margin: 0.4%;
+  border-radius: 1em;
+  background-color: white;
+  transition: all 0.4s;
+  border: rgb(245, 227, 227);
+  border-width: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.pokeimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text {
+  line-height: 1em;
+  text-align: center;
+}
+
+.poketype {
+  font-size: 10px;
+  display: inline-block;
+  line-height: 1.3em;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.normal {
+  background-color: #aab09f;
+  border-color: #aab09f;
+}
+
+.fighting {
+  background-color: #cb5f48;
+  border-color: #cb5f48;
+}
+
+.flying {
+  background-color: #7da6de;
+  border-color: #7da6de;
+}
+
+.poison {
+  background-color: #b468b7;
+  border-color: #b468b7;
+}
+
+.ground {
+  background-color: #cc9f4f;
+  border-color: #cc9f4f;
+}
+
+.rock {
+  background-color: #b2a061;
+  border-color: #b2a061;
+}
+
+.bug {
+  background-color: #d8e030;
+  border-color: #d8e030;
+}
+
+.ghost {
+  background-color: #846ab6;
+  border-color: #846ab6;
+}
+
+.steel {
+  background-color: #89a1b0;
+  border-color: #89a1b0;
+}
+
+.fire {
+  background-color: #ea7a3c;
+  border-color: #ea7a3c;
+}
+
+.water {
+  background-color: #539ae2;
+  border-color: #539ae2;
+}
+
+.grass {
+  background-color: #71c558;
+  border-color: #71c558;
+}
+
+.electric {
+  background-color: #e5c531;
+  border-color: #e5c531;
+}
+
+.psychic {
+  background-color: #e5709b;
+  border-color: #e5709b;
+}
+
+.ice {
+  background-color: #70cbd4;
+  border-color: #70cbd4;
+}
+
+.dragon {
+  background-color: #6a7baf;
+  border-color: #6a7baf;
+}
+
+.dark {
+  background-color: #736c75;
+  border-color: #736c75;
+}
+
+.fairy {
+  background-color: #e397d1;
+  border-color: #e397d1;
+}
+
+.unknown {
+  background-color: rgb(145, 62, 145);
+  border-color: purple;
+}
+
+.shadow {
+  background-color: red;
+  border-color: rgb(207, 0, 0);
 }

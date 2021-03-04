@@ -1,6 +1,6 @@
 export class Pokemon {
 
-    constructor(    
+    constructor(
         private _id: number,
         private _name: string,
         private _hp: number,

@@ -29,15 +29,12 @@ export class TrainerDetailsComponent implements OnInit {
       this.trainerService.getTrainerById(postId).subscribe((trainer) => {
         trainer.team.forEach((pokemonInfo, index) => {
           this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
-            .subscribe((pokemonRaw) => {
-              trainer.team[index].pokemon = this.pokemonService.parsePokemonRaw(pokemonRaw);
+            .then((pokemonRaw) => {
+              trainer.team[index].pokemon = pokemonRaw;
             });
         });
         this.trainer = trainer;
       });
     });
   }
-
-
-
 }

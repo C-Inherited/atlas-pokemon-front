@@ -19,9 +19,10 @@ export class PokemonService {
     return this.http.get<PokemonRaw[]>(this.url + '/pokemon?limit=150');
   }
 
-  getPokemonById(id: number): Observable<PokemonRaw> {
-    return this.http.get<PokemonRaw>(this.url + '/pokemon/' + id);
-  }
+   async getPokemonById(id: number): Promise<Pokemon> {
+     const data = this.http.get<PokemonRaw>(this.url + '/pokemon/' + id).toPromise();
+     return this.parsePokemonRaw(await data);
+   }
 
   getPokemonByName(name: string): Observable<PokemonRaw> {
     return this.http.get<PokemonRaw>(this.url + '/pokemon/' + name);
@@ -29,8 +30,8 @@ export class PokemonService {
 
   parsePokemonRaw(pokemonRaw: PokemonRaw): Pokemon{
     let pokemon: Pokemon;
-    let types: string[] = [];
-    let abilities: string[] = [];
+    const types: string[] = [];
+    const abilities: string[] = [];
     pokemonRaw.types.forEach((type) => types.push(type.type.name));
     pokemonRaw.abilities.forEach((ability) => abilities.push(ability.ability.name));
     pokemon = new Pokemon(

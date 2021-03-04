@@ -42,8 +42,8 @@ export class PokedexComponent implements OnInit {
     this.page = index;
     this.pokePage = [];
     for (let i = (index - 1)*20 +1; i <= index*20; i++) {
-      this.pokemonService.getPokemonById(i).subscribe(pokemonRaw => {
-        this.pokePage.push(this.pokemonService.parsePokemonRaw(pokemonRaw));
+      this.pokemonService.getPokemonById(i).then(pokemon => {
+        this.pokePage.push(pokemon);
         this.sortPokemons();
       })
     }
@@ -54,11 +54,19 @@ export class PokedexComponent implements OnInit {
     this.pokePage.sort((a, b) => (a.id > b.id) ? 1 : -1);
   }
 
-  getAllPokemon(): void {
+  async setUp(): Promise<void> {
+    const pokemons = [];
     for (let i = 1; i < 151; i++) {
-      this.pokemonService.getPokemonById(i).subscribe(pokemonRaw => {
-        this.pokemons.push(this.pokemonService.parsePokemonRaw(pokemonRaw));
+      await this.pokemonService.getPokemonById(i).then(pokemonRaw => {
+        pokemons.push(pokemonRaw);
       })
     };
+    Promise.all(pokemons).then(pokemons => {
+      console.log(pokemons[0])
+      this.pokemons = pokemons;
+      this.getPage(1);
+      this.showPokemonDetails(this.pokemons[0]);
+    });
+
   }
 }

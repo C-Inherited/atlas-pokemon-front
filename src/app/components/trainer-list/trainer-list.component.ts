@@ -28,4 +28,7 @@ export class TrainerListComponent implements OnInit {
       });
   }
 
+  trainerCreated(): void {
+    this.listTrainers();
+  }
 }

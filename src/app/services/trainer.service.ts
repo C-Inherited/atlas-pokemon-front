@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Trainer} from '../common/interfaces';
+import {SimpleTrainer, Trainer} from '../common/interfaces';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -28,8 +28,8 @@ export class TrainerService {
     return this.http.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
   }
 
-  postSimpleTrainer(body: {id: number, name: string, hobby: string, age: number, imageUrl: string}): Observable <Object>{
-    return this.http.post(this.postSimpleTrainerUrl, body);
+  postSimpleTrainer(body: SimpleTrainer): Observable <SimpleTrainer>{
+    return this.http.post<SimpleTrainer>(this.postSimpleTrainerUrl, body);
   }
 
   deleteTrainer(id: number): Observable<any>{

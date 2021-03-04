@@ -5,7 +5,7 @@ import {TrainerDetailsComponent} from './components/trainer-details/trainer-deta
 import {HomeComponentComponent} from './components/home-component/home-component.component';
 import {TrainerListComponent} from './components/trainer-list/trainer-list.component';
 import {PokemonDetailsComponent} from './components/pokemon-details/pokemon-details.component';
-import { PokedexComponent } from './components/pokedex/pokedex.component';
+import {PokedexComponent} from './components/pokedex/pokedex.component';
 
 const routes: Routes = [
   {
@@ -32,7 +32,6 @@ const routes: Routes = [
     path: 'pokedex/:id',
     component: PokedexComponent
   }
-
 
 ];
 

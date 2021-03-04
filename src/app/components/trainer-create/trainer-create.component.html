@@ -1,0 +1,60 @@
+<div class="container">
+  <form [formGroup]="form"  #formDirective="ngForm">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <label>Name</label>
+        </div>
+        <div class="col">
+          <input formControlName="name" type="text" name="name" placeholder="Introduce name"/>
+          <span class="error-msg" *ngIf="nameField.hasError('required') && nameField.touched">Name is required</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <label>Hobby</label>
+        </div>
+        <div class="col">
+          <input formControlName="hobby" type="text" name="hobby" placeholder="Introduce hobby"/>
+          <span class="error-msg" *ngIf="hobbyField.hasError('required') && hobbyField.touched">Hobby is required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label>Age</label>
+          </div>
+          <div class="col">
+            <input formControlName="age" type="text" name="age" placeholder="Introduce age" />
+            <span class="error-msg" *ngIf="ageField.hasError('required') && ageField.touched">Age is required</span>
+            <span class="error-msg" *ngIf="(ageField.hasError('min') || ageField.hasError('max') || ageField.hasError('pattern')) && ageField.touched && !ageField.hasError('required')">Age should be between 15 and 80</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label>Photo</label>
+          </div>
+          <div class="col">
+            <input formControlName="photo" type="text" name="photo" placeholder="Introduce photo"/>
+            <span class="error-msg" *ngIf="photoField.hasError('required') && photoField.touched">Photo is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row button">
+      <div class="col">
+        <button (click)="onSubmit()" [disabled]="form.invalid" type="button" class="btn btn-outline-danger">Create trainer</button>
+      </div>
+    </div>
+    </form>
+</div>
