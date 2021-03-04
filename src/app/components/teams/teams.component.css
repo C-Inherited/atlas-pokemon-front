@@ -9,8 +9,9 @@
   }
 
   .pokeshow{
-      display: flex;
-      justify-self: center;
+    display: flex;
+    justify-self: center;
+    margin-bottom: 90vh;
   }
 
   .pokecard {

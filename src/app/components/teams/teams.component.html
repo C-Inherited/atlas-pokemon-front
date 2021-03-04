@@ -14,8 +14,6 @@
         <app-pokemon-details (click)="selectPokemon(pokemon.pokemon)" [pokemon]="pokemon.pokemon"></app-pokemon-details>
     </div>
     <div>
-      <p></p>
-      <p></p>
       <div *ngIf="selectedTrainer.team.length<7" (click)="activateInput()" class="pokecard">
         <div class="container">
           <p style="text-align: center" *ngIf="!addPokemonInput">Add pokemon</p>
