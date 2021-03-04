@@ -1,9 +1,26 @@
 <app-trainer-create (trainerCreated)="trainerCreated()" ></app-trainer-create>
-      <div class="carousel-cell" *ngFor="let trainer of trainers">
-        <div class="text-center">{{ trainer.name }}</div>
-          <a [routerLink]="['/trainers', trainer.id]">
-            <img class="image-trainer" src="{{ trainer.imageUrl }}" alt="trainer-image" />
-          </a>
-      </div>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+          <div class="pokelist">
+            <div class="carousel-item active">
+              <p>LIST OF TRAINERS OR IMAGE</p>
+            </div>
+            <div class="pokecard carousel-item" *ngFor="let trainer of trainers">
+              <div class="text-center">{{ trainer.name }}</div>
+                <a [routerLink]="['/trainers', trainer.id]">
+                  <img src="{{ trainer.imageUrl }}" height="100px" alt="trainer-image" />
+                </a>
+            </div>
+          </div>
+        </div>
 
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
+</div>
 
