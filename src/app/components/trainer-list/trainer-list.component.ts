@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Trainer} from '../../common/interfaces';
-import { TrainerService } from '../../services/trainer.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Trainer} from '../../common/interfaces';
+import {TrainerService} from '../../services/trainer.service';
 
 @Component({
   selector: 'app-trainer-list',
@@ -10,6 +10,7 @@ import { TrainerService } from '../../services/trainer.service';
 
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
+  numberOfColumns: number;
 
   openForm = false;
 
@@ -17,17 +18,18 @@ export class TrainerListComponent implements OnInit {
 
   constructor(private trainerService: TrainerService) {}
 
-  ngOnInit(): void {
-    this.listTrainers();
+  async ngOnInit(): Promise<void> {
+   await this.listTrainers();
   }
 
-  private listTrainers(): void {
+  async listTrainers(): Promise<Trainer[]> {
     this.trainers = [];
-    this.trainerService
-      .getTrainers()
+    (await (this.trainerService
+      .getTrainers()))
       .subscribe((trainerList) => {
         this.trainers = trainerList;
       });
+    return this.trainers;
   }
 
   trainerCreated(): void {

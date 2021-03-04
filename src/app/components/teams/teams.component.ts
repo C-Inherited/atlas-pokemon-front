@@ -29,15 +29,14 @@ export class TeamsComponent implements OnInit {
     this.listTrainers();
   }
 
-  private listTrainers(): Trainer[] | void {
+  async listTrainers(): Promise<Trainer[]> {
     this.trainers = [];
-    this.trainerService
-      .getTrainers()
+    (await (this.trainerService
+      .getTrainers()))
       .subscribe((trainerList) => {
         this.trainers = trainerList;
-        return trainerList;
       });
-    
+    return this.trainers;
   }
 
   selectTrainer(trainer: Trainer): void{
@@ -46,7 +45,7 @@ export class TeamsComponent implements OnInit {
         .then((pokemon) => {
           trainer.team[index].pokemon = pokemon;
           if (trainer.team.length > 0){
-            this.selectedPokemon = trainer.team[0].pokemon
+            this.selectedPokemon = trainer.team[0].pokemon;
           }
         });
     });
@@ -56,7 +55,7 @@ export class TeamsComponent implements OnInit {
 
   selectPokemon(pokemon: Pokemon): void{
     this.selectedPokemon = pokemon;
-    console.log(this.selectedPokemon)
+    console.log(this.selectedPokemon);
   }
 
   deletePokemon(id: number){

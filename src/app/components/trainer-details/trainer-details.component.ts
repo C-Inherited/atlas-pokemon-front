@@ -23,10 +23,10 @@ export class TrainerDetailsComponent implements OnInit {
     this.getTrainerById();
   }
 
-  private getTrainerById(): void {
-    this.activatedRoute.params.subscribe(params => {
+  private async getTrainerById(): Promise<void> {
+    this.activatedRoute.params.subscribe(async params => {
       const postId = +params.id;
-      this.trainerService.getTrainerById(postId).subscribe((trainer) => {
+      (await this.trainerService.getTrainerById(postId)).subscribe((trainer) => {
         trainer.team.forEach((pokemonInfo, index) => {
           this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
             .then((pokemonRaw) => {
@@ -35,6 +35,13 @@ export class TrainerDetailsComponent implements OnInit {
         });
         this.trainer = trainer;
       });
+    });
+  }
+
+  private deleteTrainerById(): void{
+    this.activatedRoute.params.subscribe(params => {
+      const postId = +params.id;
+      this.trainerService.deleteTrainer(postId).subscribe();
     });
   }
 }

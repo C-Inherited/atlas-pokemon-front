@@ -15,17 +15,22 @@ export class TrainerService {
   private completeTrainerByIdUrl = this.baseUrl + '/trainer/';
   private postSimpleTrainerUrl = this.baseUrl + '/trainer';
   private pokemonCompleteUrl = this.baseUrl + this.pokemon;
+  private result: any;
 
   constructor(private http: HttpClient) {
   }
 
-  getTrainers(): Observable<Trainer[]> {
-    return this.http.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon);
+  async getTrainers(): Promise<Observable<Trainer[]>> {
+    const data = this.http.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon);
+    await data;
+    return data;
   }
 
-  getTrainerById(id: number): Observable<Trainer> {
+  async getTrainerById(id: number): Promise<Observable<Trainer>> {
     this.id = id;
-    return this.http.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
+    const data = this.http.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
+    await data;
+    return data;
   }
 
   postSimpleTrainer(body: SimpleTrainer): Observable <SimpleTrainer>{

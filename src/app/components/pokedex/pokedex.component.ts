@@ -66,6 +66,5 @@ export class PokedexComponent implements OnInit {
       this.getPage(1);
       this.showPokemonDetails(this.pokemons[0]);
     });
-
   }
 }
