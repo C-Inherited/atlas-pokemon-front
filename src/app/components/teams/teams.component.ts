@@ -56,11 +56,10 @@ export class TeamsComponent implements OnInit {
     }
   }
 
-  deletePokemon(id: number){
-    console.log(id)
+  deletePokemon(id: number): void {
     this.trainerService.deletePokemonFromTeam(id).subscribe(() => {
-      this.listTrainers()
-    })
+      this.selectedTrainer.team = this.selectedTrainer.team.filter(pokemon => pokemon.id !== id);
+    });
   }
 
   addPokemon(name: string){
