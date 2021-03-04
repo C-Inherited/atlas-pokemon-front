@@ -1,12 +1,17 @@
 
-
-<app-trainer-create *ngIf="openForm" (trainerCreated)="trainerCreated()"></app-trainer-create>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <app-trainer-create (trainerCreated)="trainerCreated()"></app-trainer-create>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
           <div class="trainerlist">
-            <div class="carousel-item active">
-              <p >LIST OF TRAINERS OR IMAGE</p>
+            <div id="active-first" class="carousel-item active">
             </div>
             <div class="trainercard carousel-item" *ngFor="let trainer of trainers">
               <div class="text-center">{{ trainer.name }}</div>
@@ -28,7 +33,7 @@
 </div>
 
 <div class="fixed-action-btn">
-  <a (click)="createTrainer()" class="btn-floating btn-large turquoise pulse tooltipped fixed" data-position="left" data-tooltip="Learn More">
+  <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn-floating btn-large turquoise pulse tooltipped fixed" data-position="left" data-tooltip="Learn More">
     <i class="large material-icons">add_circle_outline</i>
   </a>
 </div>
