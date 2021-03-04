@@ -41,7 +41,8 @@
                 <p>Types: {{pokemonToShow.types}}</p>
                 <p>Height: {{pokemonToShow.height}}</p>
                 <p>Weight: {{pokemonToShow.weight}}</p>
-                <p>Abilities: {{pokemonToShow.abilities}}</p>
+                <p>Abilities:</p>
+                <p *ngFor="let ability of pokemonToShow.abilities">{{ability.ability}} <span *ngIf="ability.is_hidden"> (hidden)</span> </p>
             </div>
 
         </div>

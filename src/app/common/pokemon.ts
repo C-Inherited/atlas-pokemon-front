@@ -12,7 +12,7 @@ export class Pokemon {
         private _types: string[],
         private _height: number,
         private _weight: number,
-        private _abilities: string[],
+        private _abilities: {ability: string, is_hidden: boolean, url: string}[],
         private _photo: string,
         private _artwork: string,
         private _show: boolean = false
@@ -106,11 +106,11 @@ export class Pokemon {
          this._weight = weight;
      }
 
-     get abilities(): string[]{
+     get abilities(): {ability: string, is_hidden: boolean, url: string}[]{
         return this._abilities;
     }
 
-    set abilities(abilities: string[]){
+    set abilities(abilities: {ability: string, is_hidden: boolean, url: string}[]){
         this._abilities = abilities;
     }
 

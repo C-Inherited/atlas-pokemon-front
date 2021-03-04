@@ -21,9 +21,8 @@ export class PokedexComponent implements OnInit {
     private pokemonService: PokemonService,
     private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.getPage(1);
-    this.showPokemonDetails(this.pokePage[0]);
+  async ngOnInit(): Promise<void> {
+    await this.setUp();
   }
 
   showPokedex(): void{

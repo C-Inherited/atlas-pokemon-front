@@ -1,39 +1,16 @@
-<select [(ngModel)]="selectedTrainer" class="form-select" aria-label="Trainer selector">
+<select [(ngModel)]="selectedTrainer" (ngModelChange)="selectTrainer($event)" class="form-select" aria-label="Trainer selector">
     <!-- <option selected>Select a trainer</option> -->
     <option [ngValue]="trainer" *ngFor="let trainer of trainers">{{trainer.id}} - {{trainer.name}}</option>
   </select>
 
-  <div  *ngFor="let pokemon of selectedTrainer.team">
-    <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
 
-</div>
+  <div class="pokeshow">
+    <app-teams-selected-pokemon *ngIf="selectedPokemon!==undefined" [pokemon]="selectedPokemon"></app-teams-selected-pokemon>
+  </div>
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-          <div class="pokemonlist">
-            <div class="carousel-item active">
-              <p >LIST OF POKEMONS</p>
-            </div>
-            <div class="trainercard carousel-item" *ngFor="let pokemon of selectedTrainer.team">
-                <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
-
-            </div>
-          </div>
-        </div>
-
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
-  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
-  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Next</span>
-</button>
-</div>
-
-<!-- <div class="fixed-action-btn">
-  <a (click)="add()" class="btn-floating btn-large turquoise pulse tooltipped fixed" data-position="left" data-tooltip="Learn More">
-    <i class="large material-icons">add_circle_outline</i>
-  </a>
-</div> -->
-
+  <div *ngIf="selectedTrainer!==undefined" class="pokelist">
+      <div (click)="selectPokemon(pokemon.pokemon)" *ngFor="let pokemon of selectedTrainer.team">
+        <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
+    </div>
+  </div>
+    

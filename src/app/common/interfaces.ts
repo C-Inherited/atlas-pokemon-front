@@ -43,9 +43,10 @@ export interface PokemonRaw {
     ability: {
       name: string,
       url: string
-    }
-  }[],
-  is_hidden: boolean
+    },
+    is_hidden: boolean
+  }[]
+  
 }
 
 export interface SimpleTrainer {

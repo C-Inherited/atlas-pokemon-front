@@ -1,0 +1,28 @@
+<main>
+    <div class="container">
+      <div class="row" *ngIf="pokemon !== undefined">
+        <div class="col-sm-3 float-left">
+          <img
+            id="pokemon-image"
+            src="{{ pokemon.artwork }}"
+            alt="pokemon image"/>
+        </div>
+        <div class="col-sm-3 float-right">
+          <p>{{pokemon.id}} - {{pokemon.name}}</p>
+          <p>HP: {{pokemon.hp}}</p>
+          <p>SPD: {{pokemon.speed}}</p>
+          <p>ATK: {{pokemon.attack}}</p>
+          <p>SP. ATK: {{pokemon.special_attack}}</p>
+          <p>DEF: {{pokemon.defense}}</p>
+          <p>SP. DEF: {{pokemon.special_defense}}</p>
+          <p>Abilities:</p>
+          <p *ngFor="let ability of pokemon.abilities">{{ability.ability}}<span *ngIf="ability.is_hidden"> (hidden)</span></p>
+        </div>
+      </div>
+      <div class="row" *ngIf="pokemon === undefined">
+        <div class="col-12">
+          <h3>No hay pokemon a mostrar</h3>
+        </div>
+      </div>
+    </div>
+  </main>

@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TrainerCreateComponent } from './components/trainer-create/trainer-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TeamsComponent } from './components/teams/teams.component';
+import { TeamsSelectedPokemonComponent } from './components/teams-selected-pokemon/teams-selected-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TeamsComponent } from './components/teams/teams.component';
     HomeComponentComponent,
     FooterComponent,
     TrainerCreateComponent,
-    TeamsComponent
+    TeamsComponent,
+    TeamsSelectedPokemonComponent
   ],
   imports: [
     BrowserModule,
