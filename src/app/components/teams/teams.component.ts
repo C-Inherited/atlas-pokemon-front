@@ -56,10 +56,11 @@ export class TeamsComponent implements OnInit {
     }
   }
 
-  deletePokemon(id: number): void {
+  deletePokemon(id: number){
+    console.log(id)
     this.trainerService.deletePokemonFromTeam(id).subscribe(() => {
-      this.selectedTrainer.team = this.selectedTrainer.team.filter(pokemon => pokemon.id !== id);
-    });
+      this.listTrainers()
+    })
   }
 
   addPokemon(name: string){
@@ -67,11 +68,23 @@ export class TeamsComponent implements OnInit {
       if (pokemon !== undefined){
         this.trainerService.addPokemonToTrainer({pokemonId: pokemon.id, trainerId: this.selectedTrainer.id}).subscribe(pokemonRaw =>
           {
-            this.addPokemonInput = false;
-            this.selectedTrainer.team.push({id: pokemonRaw.id, pokemonId: pokemonRaw.pokemonId, pokemon: pokemon});
+            console.log(pokemonRaw)
+            this.addPokemonInput = false
+            this.listTrainers()
+            this.trainerService.getTrainerById(this.selectedTrainer.id).then(trainer => {
+              trainer.team.forEach((pokemonInfo, index) => {
+                this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
+                  .then((pokemonRaw) => {
+                    trainer.team[index].pokemon = pokemonRaw;
+                  });
+                });
+              this.selectedTrainer = trainer;
+            });
         })
       }
-    })
+    },
+    error => alert(name + " does not exist :C")
+    )
   }
 
 

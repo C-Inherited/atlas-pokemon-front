@@ -19,13 +19,9 @@
     bottom: 20%;
 }
 
-.poke-box{
-    display: flex;
-}
 
 .bottom-menu {
     text-align: center;
-    margin: 35px;
 }
 
 .title-img{
@@ -40,6 +36,8 @@
 }
 
 .pokedex{
+    height: 70%;
+    border-radius: 5%;
     background-color: rgb(163, 45, 45);
 }
 

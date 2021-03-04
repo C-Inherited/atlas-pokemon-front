@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 .main-body {
-  margin: 10px;
+  margin-top: 10px;
   width: 97%;
-  height: 97%;
   background: grey;
   margin-right: auto;
   margin-left: auto;
@@ -16,3 +15,10 @@
   text-align: center;
 }
 
+.footer {
+  flex: 1;
+  }
+  
+  html {
+  min-height: 100%;
+  }
