@@ -22,12 +22,20 @@
   width: 100%;
 }
 
-.carousel-control-prev-icon{
-  color: black;
-  opacity: 1;
+#active-first{
+  visibility: visible;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
-.carousel-control-prev{
-  color:black;
-  opacity: 1;
+.carousel .carousel-item {
+  visibility: visible;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: 0;
+  left: 0;
 }
