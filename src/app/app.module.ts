@@ -11,7 +11,8 @@ import { NavBarComponentComponent } from './components/nav-bar-component/nav-bar
 import { HomeComponentComponent } from './components/home-component/home-component.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TrainerCreateComponent } from './components/trainer-create/trainer-create.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TeamsComponent } from './components/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavBarComponentComponent,
     HomeComponentComponent,
     FooterComponent,
-    TrainerCreateComponent
+    TrainerCreateComponent,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
