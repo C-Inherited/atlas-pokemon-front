@@ -16,8 +16,8 @@ export class TeamsComponent implements OnInit {
   selectedTrainer!: Trainer;
   team: Pokemon[];
   selectedPokemon!: Pokemon;
-  addPokemonInput: boolean = false;
-  pokemonToAdd: string = '';
+  addPokemonInput = false;
+  pokemonToAdd = '';
 
   constructor(
     private trainerService: TrainerService,
@@ -45,11 +45,10 @@ export class TeamsComponent implements OnInit {
         });
     });
     this.selectedTrainer = trainer;
-
   }
 
   selectPokemon(pokemon: Pokemon): void{
-    if(this.selectedPokemon?.id === pokemon.id){
+    if (this.selectedPokemon?.id === pokemon.id){
       this.selectedPokemon = undefined;
     } else{
       this.selectedPokemon = pokemon;
@@ -63,29 +62,18 @@ export class TeamsComponent implements OnInit {
     })
   }
 
-  addPokemon(name: string){
+  addPokemon = (name: string) => {
     this.pokemonService.getPokemonByName(name).then(pokemon => {
       if (pokemon !== undefined){
         this.trainerService.addPokemonToTrainer({pokemonId: pokemon.id, trainerId: this.selectedTrainer.id}).subscribe(pokemonRaw =>
           {
-            console.log(pokemonRaw)
-            this.addPokemonInput = false
-            this.listTrainers()
-            this.trainerService.getTrainerById(this.selectedTrainer.id).then(trainer => {
-              trainer.team.forEach((pokemonInfo, index) => {
-                this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
-                  .then((pokemonRaw) => {
-                    trainer.team[index].pokemon = pokemonRaw;
-                  });
-                });
-              this.selectedTrainer = trainer;
-            });
-        })
+            this.addPokemonInput = false;
+            this.selectedTrainer.team.push({id: pokemonRaw.id, pokemonId: pokemonRaw.pokemonId, pokemon});
+          },
+          error => alert(name + " does not exist :C"));
       }
-    },
-    error => alert(name + " does not exist :C")
-    )
-  }
+    });
+  };
 
 
   activateInput(): void{

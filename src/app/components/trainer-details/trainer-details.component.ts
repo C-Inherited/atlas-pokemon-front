@@ -12,6 +12,10 @@ import {ActivatedRoute} from '@angular/router';
 export class TrainerDetailsComponent implements OnInit {
 
   trainer: Trainer;
+  trainers: Trainer[];
+  selectedTrainer!: Trainer;
+
+
 
   constructor(
     private trainerService: TrainerService,
@@ -38,10 +42,10 @@ export class TrainerDetailsComponent implements OnInit {
     });
   }
 
-  private deleteTrainerById(): void{
-    this.activatedRoute.params.subscribe(params => {
-      const postId = +params.id;
-      this.trainerService.deleteTrainer(postId).subscribe();
-    });
+  async listTrainers(): Promise<void> {
+    this.trainers = [];
+    (await this.trainerService.getTrainers().then((trainerList) => {
+      this.trainers = trainerList;
+    }));
   }
 }

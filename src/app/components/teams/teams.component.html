@@ -16,7 +16,7 @@
       <button class="btn delete" style="visibility: hidden;">&#x2715;</button>
       <div *ngIf="selectedTrainer.team.length<7" (click)="activateInput()" class="pokecard">
         <div class="container">
-          <p style="text-align: center" *ngIf="!addPokemonInput">add pokemon</p>
+          <p style="text-align: center" *ngIf="!addPokemonInput">Add pokemon</p>
           <div class="row">
           <div class="col">
             <input *ngIf="addPokemonInput" type="text"  pattern="[0-9]+" [(ngModel)]="pokemonToAdd">
@@ -29,5 +29,4 @@
           </div>
         </div>
     </div>
-
   </div>
