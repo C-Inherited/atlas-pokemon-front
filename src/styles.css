@@ -6,6 +6,9 @@
   background: grey;
   margin-right: auto;
   margin-left: auto;
+  background: url(https://media.redadn.es/css/i/pkm_fondo.png);
+  background-repeat: repeat;
+  background-position: center 166px !important;
 }
 
 .centertext {
