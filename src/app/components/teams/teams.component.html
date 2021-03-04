@@ -15,12 +15,21 @@
     </div>
     <div>
       <p></p>
+      <p></p>
       <div *ngIf="selectedTrainer.team.length<7" (click)="activateInput()" class="pokecard">
-      <p>Añadir\npokemon</p> 
-      <input *ngIf="addPokemonInput" type="text" [(ngModel)]="pokemonToAdd">
-      <button *ngIf="addPokemonInput" (click)="addPokemon(pokemonToAdd)"></button>
+        <div class="container">
+          <p style="text-align: center" *ngIf="!addPokemonInput">Añadir pokemon</p>
+          <div class="row">
+          <div class="col">
+            <input *ngIf="addPokemonInput" type="text"  pattern="[0-9]+" [(ngModel)]="pokemonToAdd">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button *ngIf="addPokemonInput" class="btn btn-outline-danger" (click)="addPokemon(pokemonToAdd)">Add Pkmn</button>
+          </div>
+          </div>
+        </div>
     </div>
-    </div>
-    
+
   </div>
-    
