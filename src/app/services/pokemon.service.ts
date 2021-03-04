@@ -19,10 +19,10 @@ export class PokemonService {
     return await this.http.get<PokemonRaw[]>(this.url + '/pokemon?limit=150').toPromise();
   }
 
-  async getPokemonById(id: number): Promise<PokemonRaw> {
-    const data = await this.http.get<PokemonRaw>(this.url + '/pokemon/' + id).toPromise();
-    return data;
-  }
+   async getPokemonById(id: number): Promise<Pokemon> {
+     const data = this.http.get<PokemonRaw>(this.url + '/pokemon/' + id).toPromise();
+     return this.parsePokemonRaw(await data);
+   }
 
   getPokemonByName(name: string): Observable<PokemonRaw> {
     return this.http.get<PokemonRaw>(this.url + '/pokemon/' + name);
