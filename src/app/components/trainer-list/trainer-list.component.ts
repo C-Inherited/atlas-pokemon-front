@@ -11,6 +11,8 @@ import { TrainerService } from '../../services/trainer.service';
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
 
+  openForm = false;
+
   @Output() showTrainerDetailsEvent = new EventEmitter();
 
   constructor(private trainerService: TrainerService) {}
@@ -30,5 +32,10 @@ export class TrainerListComponent implements OnInit {
 
   trainerCreated(): void {
     this.listTrainers();
+    this.openForm = false;
+  }
+
+  createTrainer(): void{
+    this.openForm = true;
   }
 }
