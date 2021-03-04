@@ -1,11 +1,14 @@
-<app-trainer-create (trainerCreated)="trainerCreated()" ></app-trainer-create>
+
+
+<app-trainer-create *ngIf="openForm" (trainerCreated)="trainerCreated()"></app-trainer-create>
+
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-          <div class="pokelist">
+          <div class="trainerlist">
             <div class="carousel-item active">
-              <p>LIST OF TRAINERS OR IMAGE</p>
+              <p >LIST OF TRAINERS OR IMAGE</p>
             </div>
-            <div class="pokecard carousel-item" *ngFor="let trainer of trainers">
+            <div class="trainercard carousel-item" *ngFor="let trainer of trainers">
               <div class="text-center">{{ trainer.name }}</div>
                 <a [routerLink]="['/trainers', trainer.id]">
                   <img src="{{ trainer.imageUrl }}" height="100px" alt="trainer-image" />
@@ -22,5 +25,11 @@
   <span class="carousel-control-next-icon" aria-hidden="true"></span>
   <span class="visually-hidden">Next</span>
 </button>
+</div>
+
+<div class="fixed-action-btn">
+  <a (click)="createTrainer()" class="btn-floating btn-large turquoise pulse tooltipped fixed" data-position="left" data-tooltip="Learn More">
+    <i class="large material-icons">add_circle_outline</i>
+  </a>
 </div>
 

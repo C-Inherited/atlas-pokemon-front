@@ -1,5 +1,5 @@
 
-.pokecard {
+.trainercard {
   width: 130px;
   height: 140px;
   padding-top: 0.5%;
@@ -12,7 +12,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.pokelist {
+.trainerlist {
   position: relative;
   bottom: 0%;
   display: flex;
