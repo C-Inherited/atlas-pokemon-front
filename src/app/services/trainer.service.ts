@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SimpleTrainer, Trainer} from '../common/interfaces';
+import {SimplePokemon, SimpleTrainer, Trainer} from '../common/interfaces';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -39,8 +39,8 @@ export class TrainerService {
     return this.http.delete(this.completeTrainerByIdUrl + id);
   }
 
-  addPokemonToTrainer(body: {pokemonId: number, trainerId: number}): Observable <Object>{ // pokemon id = species id (not unique)
-    return this.http.post(this.pokemonCompleteUrl, body);
+  addPokemonToTrainer(body: {pokemonId: number, trainerId: number}): Observable <SimplePokemon>{ // pokemon id = species id (not unique)
+    return this.http.post<SimplePokemon>(this.pokemonCompleteUrl, body);
   }
 
   deletePokemonFromTeam(id: number): Observable<any>{  // database id (primary key)

@@ -46,7 +46,7 @@ export interface PokemonRaw {
     },
     is_hidden: boolean
   }[]
-  
+
 }
 
 export interface SimpleTrainer {
@@ -54,4 +54,9 @@ export interface SimpleTrainer {
   hobby: string;
   age: number;
   imageUrl: string;
+}
+
+export interface SimplePokemon{
+  id: number;
+  pokemonId: number;
 }
