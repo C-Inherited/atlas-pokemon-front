@@ -24,9 +24,7 @@ export class TrainerListComponent implements OnInit {
 
   async listTrainers(): Promise<Trainer[]> {
     this.trainers = [];
-    (await (this.trainerService
-      .getTrainers()))
-      .subscribe((trainerList) => {
+    await this.trainerService.getTrainers().then((trainerList) => {
         this.trainers = trainerList;
       });
     return this.trainers;

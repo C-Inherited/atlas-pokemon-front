@@ -25,18 +25,15 @@ export class TeamsComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-    this.listTrainers();
+  async ngOnInit(): Promise<void> {
+    await this.listTrainers();
   }
 
-  async listTrainers(): Promise<Trainer[]> {
+  async listTrainers(): Promise<void> {
     this.trainers = [];
-    (await (this.trainerService
-      .getTrainers()))
-      .subscribe((trainerList) => {
+    (await this.trainerService.getTrainers().then((trainerList) => {
         this.trainers = trainerList;
-      });
-    return this.trainers;
+      }));
   }
 
   selectTrainer(trainer: Trainer): void{
@@ -44,9 +41,7 @@ export class TeamsComponent implements OnInit {
       this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
         .then((pokemon) => {
           trainer.team[index].pokemon = pokemon;
-          if (trainer.team.length > 0){
-            this.selectedPokemon = trainer.team[0].pokemon;
-          }
+          this.selectedPokemon = undefined;
         });
     });
     this.selectedTrainer = trainer;
@@ -54,8 +49,11 @@ export class TeamsComponent implements OnInit {
   }
 
   selectPokemon(pokemon: Pokemon): void{
-    this.selectedPokemon = pokemon;
-    console.log(this.selectedPokemon);
+    if(this.selectedPokemon?.id === pokemon.id){
+      this.selectedPokemon = undefined;
+    } else{
+      this.selectedPokemon = pokemon;
+    }
   }
 
   deletePokemon(id: number){
@@ -73,7 +71,7 @@ export class TeamsComponent implements OnInit {
             console.log(pokemonRaw)
             this.addPokemonInput = false
             this.listTrainers()
-            this.trainerService.getTrainerById(this.selectedTrainer.id).subscribe(trainer => {
+            this.trainerService.getTrainerById(this.selectedTrainer.id).then(trainer => {
               trainer.team.forEach((pokemonInfo, index) => {
                 this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
                   .then((pokemonRaw) => {

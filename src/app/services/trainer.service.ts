@@ -20,17 +20,15 @@ export class TrainerService {
   constructor(private http: HttpClient) {
   }
 
-  async getTrainers(): Promise<Observable<Trainer[]>> {
-    const data = this.http.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon);
-    await data;
-    return data;
+  async getTrainers(): Promise<Trainer[]> {
+    const data = this.http.get<Trainer[]>(this.listOfTrainersUrl + this.pokemon).toPromise();
+    return await data;
   }
 
-  async getTrainerById(id: number): Promise<Observable<Trainer>> {
+  async getTrainerById(id: number): Promise<Trainer> {
     this.id = id;
-    const data = this.http.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon);
-    await data;
-    return data;
+    const data = this.http.get<Trainer>(this.completeTrainerByIdUrl + id + this.pokemon).toPromise();
+    return await data;
   }
 
   postSimpleTrainer(body: SimpleTrainer): Observable <SimpleTrainer>{

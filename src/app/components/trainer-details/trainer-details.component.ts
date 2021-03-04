@@ -26,7 +26,7 @@ export class TrainerDetailsComponent implements OnInit {
   private async getTrainerById(): Promise<void> {
     this.activatedRoute.params.subscribe(async params => {
       const postId = +params.id;
-      (await this.trainerService.getTrainerById(postId)).subscribe((trainer) => {
+      await this.trainerService.getTrainerById(postId).then((trainer) => {
         trainer.team.forEach((pokemonInfo, index) => {
           this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
             .then((pokemonRaw) => {
