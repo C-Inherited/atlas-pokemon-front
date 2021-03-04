@@ -46,11 +46,11 @@
           <div class="col">
             <select formControlName="photo" class="form-select" aria-label="Default select example" placeholder="Select photo">
               <option selected>Open this select menu</option>
-              <option value="1">One Image url</option>
-              <option value="2">Two Image Url</option>
-              <option value="3">Three image url</option>
+              <option value="https://www.vhv.rs/dpng/d/498-4988462_pokemon-sprite-trainer-png-transparent-pokemon-trainer-sprite.png">Trainer 1</option>
+              <option value="https://image.pngaaa.com/12/2286012-middle.png">Trainer 2</option>
+              <option value="https://img.favpng.com/0/20/16/pok-mon-trainer-pixel-art-sprite-png-favpng-5gacqmJtkqKaGmxDxuJ4nGyAJ.jpg">Trainer 3</option>
+              <option value="https://www.vhv.rs/dpng/d/590-5904771_trainer-pic2-2-00000-pokemon-sprites-trainer-oc.png">Trainer 4</option>
             </select>
-<!--            <input formControlName="photo" type="text" name="photo" placeholder="Introduce photo"/>-->
             <span class="error-msg" *ngIf="photoField.hasError('required')">Photo is required</span>
           </div>
         </div>
