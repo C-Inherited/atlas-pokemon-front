@@ -23,3 +23,10 @@
   width: 25px;
   height: 25px;
 }
+
+
+.bottom-footer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
