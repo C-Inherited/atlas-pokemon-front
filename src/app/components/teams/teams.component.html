@@ -9,8 +9,18 @@
   </div>
 
   <div *ngIf="selectedTrainer!==undefined" class="pokelist">
-      <div (click)="selectPokemon(pokemon.pokemon)" *ngFor="let pokemon of selectedTrainer.team">
-        <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
+      <div *ngFor="let pokemon of selectedTrainer.team">
+        <button class="btn delete" (click)="deletePokemon(pokemon.id)">X</button>
+        <app-pokemon-details (click)="selectPokemon(pokemon.pokemon)" [pokemon]="pokemon.pokemon"></app-pokemon-details>
     </div>
+    <div>
+      <p></p>
+      <div *ngIf="selectedTrainer.team.length<7" (click)="activateInput()" class="pokecard">
+      <p>Añadir\npokemon</p> 
+      <input *ngIf="addPokemonInput" type="text" [(ngModel)]="pokemonToAdd">
+      <button *ngIf="addPokemonInput" (click)="addPokemon(pokemonToAdd)"></button>
+    </div>
+    </div>
+    
   </div>
     

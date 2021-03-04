@@ -16,6 +16,8 @@ export class TeamsComponent implements OnInit {
   selectedTrainer!: Trainer;
   team: Pokemon[];
   selectedPokemon!: Pokemon;
+  addPokemonInput: boolean = false;
+  pokemonToAdd: string = '';
 
   constructor(
     private trainerService: TrainerService,
@@ -55,5 +57,39 @@ export class TeamsComponent implements OnInit {
   selectPokemon(pokemon: Pokemon): void{
     this.selectedPokemon = pokemon;
     console.log(this.selectedPokemon)
+  }
+
+  deletePokemon(id: number){
+    console.log(id)
+    this.trainerService.deletePokemonFromTeam(id).subscribe(() => {
+      this.listTrainers()
+    })
+  }
+
+  addPokemon(name: string){
+    this.pokemonService.getPokemonByName(name).then(pokemon => {
+      if (pokemon !== undefined){
+        this.trainerService.addPokemonToTrainer({pokemonId: pokemon.id, trainerId: this.selectedTrainer.id}).subscribe(pokemonRaw =>
+          {
+            console.log(pokemonRaw)
+            this.addPokemonInput = false
+            this.listTrainers()
+            this.trainerService.getTrainerById(this.selectedTrainer.id).subscribe(trainer => {
+              trainer.team.forEach((pokemonInfo, index) => {
+                this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
+                  .then((pokemonRaw) => {
+                    trainer.team[index].pokemon = pokemonRaw;
+                  });
+                });
+              this.selectedTrainer = trainer;
+            });
+        })
+      }
+    })
+  }
+
+
+  activateInput(): void{
+    this.addPokemonInput = true;
   }
 }

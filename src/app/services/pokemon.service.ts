@@ -24,8 +24,9 @@ export class PokemonService {
      return this.parsePokemonRaw(await data);
    }
 
-  getPokemonByName(name: string): Observable<PokemonRaw> {
-    return this.http.get<PokemonRaw>(this.url + '/pokemon/' + name);
+  async getPokemonByName(name: string): Promise<Pokemon> {
+    const data = this.http.get<PokemonRaw>(this.url + '/pokemon/' + name).toPromise();
+    return this.parsePokemonRaw(await data);
   }
 
   parsePokemonRaw(pokemonRaw: PokemonRaw): Pokemon{
