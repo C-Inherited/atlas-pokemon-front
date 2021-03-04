@@ -2,30 +2,36 @@
   <img  class="title-img" src="https://i.ibb.co/ZYVwPKh/Pokedex.png" alt="title-image" height="150px">
   <div class="row">
     <div class="col-sm-6">
+      <div class="row">
+        <div class="boke-box">
 
-      <div class="boke-box">
+          <div *ngFor="let pokemon of pokePage" (click)="showPokemonDetails(pokemon)">
 
-        <div *ngFor="let pokemon of pokePage" (click)="showPokemonDetails(pokemon)">
+            <!--   -->
+            <div class="poke-div">
+              <img src="{{pokemon.photo}}" class="img-poke img-fluid">
+              <!-- <h5 class="mt-2">{{pokemon.name}}</h5> -->
+            </div>
 
-          <!--   -->
-          <div class="poke-div">
-            <img src="{{pokemon.photo}}" class="img-poke img-fluid">
-            <!-- <h5 class="mt-2">{{pokemon.name}}</h5> -->
           </div>
-
         </div>
       </div>
 
-      <div class="bottom-menu">
-        <button class="btn btn-light m-1" (click)="getPage(1)">1-20</button>
-        <button class="btn btn-light m-1" (click)="getPage(2)">21 - 40</button>
-        <button class="btn btn-light m-1" (click)="getPage(3)">41 - 60</button>
-        <button class="btn btn-light m-1" (click)="getPage(4)">61 - 80</button>
-        <button class="btn btn-light m-1" (click)="getPage(5)">81 - 100</button>
-        <button class="btn btn-light m-1" (click)="getPage(6)">101 - 120</button>
-        <button class="btn btn-light m-1" (click)="getPage(7)">121 - 140</button>
-        <button class="btn btn-light m-1" (click)="getPage(8)">140 - 150</button>
+      <div class="row">
+        <br>
+        <div class="bottom-menu align-bottom">
+          <button class="btn btn-light m-1" (click)="getPage(1)">1-20</button>
+          <button class="btn btn-light m-1" (click)="getPage(2)">21-40</button>
+          <button class="btn btn-light m-1" (click)="getPage(3)">41-60</button>
+          <button class="btn btn-light m-1" (click)="getPage(4)">61-80</button>
+          <button class="btn btn-light m-1" (click)="getPage(5)">81-100</button>
+          <button class="btn btn-light m-1" (click)="getPage(6)">101-120</button>
+          <button class="btn btn-light m-1" (click)="getPage(7)">121-140</button>
+          <button class="btn btn-light m-1" (click)="getPage(8)">140-150</button>
+        </div>
       </div>
+
+
     </div>
 
     <div class="col-sm-6">
