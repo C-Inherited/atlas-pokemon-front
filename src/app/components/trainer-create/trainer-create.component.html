@@ -1,4 +1,3 @@
-<div class="container">
   <form [formGroup]="form"  #formDirective="ngForm">
   <div class="row">
     <div class="col">
@@ -57,10 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="row button">
-      <div class="col">
-        <button (click)="onSubmit()" [disabled]="form.invalid" type="button" class="btn btn-outline-danger">Create trainer</button>
-      </div>
+    <div class="row button pb-1 p-t2">
+        <button (click)="onSubmit()" [disabled]="form.invalid" type="button" class="btn btn-outline-danger">Create</button>
     </div>
     </form>
-</div>

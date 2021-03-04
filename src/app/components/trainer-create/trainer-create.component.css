@@ -8,6 +8,9 @@
 .button {
   margin: 20px 40% 0;
 }
+.button:hover{
+  cursor: not-allowed;
+}
 .error-msg {
   color: red;
   font-size: 11px;
