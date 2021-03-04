@@ -33,9 +33,8 @@ export class TrainerCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.trainerService.postSimpleTrainer({name: this.nameField.value, hobby: this.hobbyField.value, age: this.ageField.value, imageUrl: this.photoField.value }).subscribe(
-      result => console.log('VOLVI' + result)
-    );
+    // tslint:disable-next-line:max-line-length
+    this.trainerService.postSimpleTrainer({name: this.nameField.value, hobby: this.hobbyField.value, age: this.ageField.value, imageUrl: this.photoField.value }).subscribe();
     this.trainerCreated.emit();
   }
 }

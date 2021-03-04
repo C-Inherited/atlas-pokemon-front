@@ -8,45 +8,19 @@
   </div>
 </div>
 
-<div class="row">
-  <div *ngIf="trainersCarousel!==undefined" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="d-block w-100">
-          <div class="trainercard" *ngFor="let trainer of trainersCarousel[0]">
+<div class="row mx-2 px-3 ">
+  <div *ngIf="trainersCarousel!==undefined">
+      <div class="row" *ngFor="let carouselPage of trainersCarousel.slice(1,trainersCarousel.length)">
+        <div class="trainercard col" *ngFor="let trainer of carouselPage">
+          <button class="btn delete" (click)="deleteTrainerById(trainer.id)" >X</button>
           <div class="text-center">{{ trainer.name }}</div>
-          <a [routerLink]="['/trainers', trainer.id]">
-            <img src="{{ trainer.imageUrl }}" height="100px" alt="trainer-image" />
+          <a class="position-absolute top-50 start-50 translate-middle" [routerLink]="['/trainers', trainer.id]">
+            <img class="mt-3" src="{{ trainer.imageUrl }}" height="100px" alt="trainer-image" />
           </a>
         </div>
       </div>
-        </div>
-
-
-    <div class="carousel-item">
-      <div class="d-block w-100" *ngFor="let carouselPage of trainersCarousel.slice(1,trainersCarousel.length)">
-        <div class="trainercard" *ngFor="let trainer of carouselPage">
-          <div class="text-center">{{ trainer.name }}</div>
-          <a [routerLink]="['/trainers', trainer.id]">
-            <img src="{{ trainer.imageUrl }}" height="100px" alt="trainer-image" />
-          </a>
-        </div>
-
-      </div>
-
     </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
 </div>
-</div>
-
 
 <div class="fixed-action-btn">
   <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn-floating btn-large turquoise pulse tooltipped fixed" data-position="left" data-tooltip="Learn More">

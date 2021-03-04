@@ -10,7 +10,6 @@ import {TrainerService} from '../../services/trainer.service';
 
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
-  numberOfColumns: number;
 
   trainersCarousel: Trainer[][] = [];
   openForm = false;
@@ -28,30 +27,34 @@ export class TrainerListComponent implements OnInit {
     await this.trainerService.getTrainers().then((trainerList) => {
         this.trainers = trainerList;
         this.trainersCarousel = [];
-        let carouselPages: number = Math.floor(this.trainers.length/4)
-        let lastPageTrainers: number = this.trainers.length%4
-        for (let i=0; i<carouselPages; i++){
-          let trainersPage: Trainer[] = [];
-          for (let j=0; j<4; j++){
-            trainersPage.push(this.trainers[i*4+j])
+        const carouselPages: number = Math.floor(this.trainers.length / 4);
+        const lastPageTrainers: number = this.trainers.length % 4;
+        for (let i = 0; i < carouselPages; i++){
+          const trainersPage: Trainer[] = [];
+          for (let j = 0; j < 4; j++){
+            trainersPage.push(this.trainers[i * 4 + j]);
           }
-          this.trainersCarousel.push(trainersPage)
+          this.trainersCarousel.push(trainersPage);
         }
         if (lastPageTrainers > 0){
-          let trainersPage: Trainer[] = [];
-        for (let i=(carouselPages)*4; i<(carouselPages)*4+lastPageTrainers; i++){
-          trainersPage.push(this.trainers[i])
+          const trainersPage: Trainer[] = [];
+          for (let i = (carouselPages) * 4; i < (carouselPages) * 4 + lastPageTrainers; i++){
+          trainersPage.push(this.trainers[i]);
         }
-        console.log(trainersPage)
-        this.trainersCarousel.push(trainersPage)
+          this.trainersCarousel.push(trainersPage);
         }
-        
-      });
+    });
     return this.trainers;
   }
 
+  deleteTrainerById(id: number): void {
+    this.trainerService.deleteTrainer(id).subscribe(() => {
+      this.trainers = this.trainers.filter(trainer => trainer.id !== id);
+    });
+  }
+
   trainerCreated(): void {
-    this.listTrainers();
+    this.listTrainers().then(r => r);
     this.openForm = false;
   }
 
