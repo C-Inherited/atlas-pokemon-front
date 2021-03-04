@@ -1,13 +1,13 @@
 <main>
     <div class="container">
       <div class="row" *ngIf="pokemon !== undefined">
-        <div class="col-sm-3 float-left">
+        <div class="col">
           <img
             id="pokemon-image"
             src="{{ pokemon.artwork }}"
             alt="pokemon image"/>
         </div>
-        <div class="col-sm-3 float-right">
+        <div class="col">
           <p>{{pokemon.id}} - {{pokemon.name}}</p>
           <p>HP: {{pokemon.hp}}</p>
           <p>SPD: {{pokemon.speed}}</p>

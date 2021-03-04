@@ -35,7 +35,7 @@ export class TeamsComponent implements OnInit {
         this.trainers = trainerList;
         return trainerList;
       });
-    
+
   }
 
   selectTrainer(trainer: Trainer): void{
@@ -43,9 +43,7 @@ export class TeamsComponent implements OnInit {
       this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
         .then((pokemon) => {
           trainer.team[index].pokemon = pokemon;
-          if (trainer.team.length > 0){
-            this.selectedPokemon = trainer.team[0].pokemon
-          }
+          this.selectedPokemon = undefined;
         });
     });
     this.selectedTrainer = trainer;
@@ -53,7 +51,11 @@ export class TeamsComponent implements OnInit {
   }
 
   selectPokemon(pokemon: Pokemon): void{
-    this.selectedPokemon = pokemon;
+    if(this.selectedPokemon?.id === pokemon.id){
+      this.selectedPokemon = undefined;
+    } else{
+      this.selectedPokemon = pokemon;
+    }
     console.log(this.selectedPokemon)
   }
 }
