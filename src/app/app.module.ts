@@ -10,9 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavBarComponentComponent } from './components/nav-bar-component/nav-bar-component.component';
 import { HomeComponentComponent } from './components/home-component/home-component.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { TrainerCreateComponent } from './components/trainer-create/trainer-create.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule,
-    IvyCarouselModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

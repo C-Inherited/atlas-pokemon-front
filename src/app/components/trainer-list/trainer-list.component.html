@@ -1,11 +1,9 @@
 <app-trainer-create (trainerCreated)="trainerCreated()" ></app-trainer-create>
-    <carousel>
       <div class="carousel-cell" *ngFor="let trainer of trainers">
         <div class="text-center">{{ trainer.name }}</div>
           <a [routerLink]="['/trainers', trainer.id]">
             <img class="image-trainer" src="{{ trainer.imageUrl }}" alt="trainer-image" />
           </a>
       </div>
-    </carousel>
 
 
