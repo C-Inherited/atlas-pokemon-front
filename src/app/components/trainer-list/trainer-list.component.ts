@@ -54,11 +54,15 @@ export class TrainerListComponent implements OnInit {
   }
 
   trainerCreated(): void {
-    this.listTrainers().then(r => r);
+    this.sleep(1500).then(() => { this.listTrainers() });
     this.openForm = false;
   }
 
   createTrainer(): void{
     this.openForm = true;
+  }
+
+   sleep(ms): Promise<any>{
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
