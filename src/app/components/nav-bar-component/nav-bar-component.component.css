@@ -1,0 +1,23 @@
+.dropdown-item {
+  color: black;
+}
+
+.icon {
+  height: 35px;
+  width: 35px;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.navbar-nav{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  position: absolute;
+}

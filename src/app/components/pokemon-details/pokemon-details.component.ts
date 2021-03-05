@@ -9,7 +9,7 @@ import { Pokemon } from 'src/app/common/pokemon';
 export class PokemonDetailsComponent implements OnInit {
 
   @Input() pokemon!: Pokemon;
-  
+
   constructor() { }
 
   ngOnInit(): void {

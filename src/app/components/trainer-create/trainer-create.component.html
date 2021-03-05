@@ -1,0 +1,104 @@
+  <form [formGroup]="form"  #formDirective="ngForm">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col-sm-3">
+          <label>Name</label>
+        </div>
+        <div class="col">
+          <input formControlName="name" type="text" name="name" placeholder="Introduce name"/>
+          <span class="error-msg" *ngIf="nameField.hasError('required') && nameField.touched">Name is required</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-sm-3">
+          <label>Hobby</label>
+        </div>
+        <div class="col">
+          <input formControlName="hobby" type="text" name="hobby" placeholder="Introduce hobby"/>
+          <span class="error-msg" *ngIf="hobbyField.hasError('required') && hobbyField.touched">Hobby is required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Age</label>
+          </div>
+          <div class="col">
+            <input formControlName="age" type="text" name="age" placeholder="Introduce age" />
+            <span class="error-msg" *ngIf="ageField.hasError('required') && ageField.touched">Age is required</span>
+            <span class="error-msg" *ngIf="(ageField.hasError('min') || ageField.hasError('max') || ageField.hasError('pattern')) && ageField.touched && !ageField.hasError('required')">Age should be between 15 and 80</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <label>Photo</label>
+          </div>
+          <div class="col">
+            <select formControlName="photo" class="form-select" aria-label="Default select example" placeholder="Select photo">
+              <option value="https://static.wikia.nocookie.net/espokemon/images/6/6f/Joven_N2B2.gif">Youngster</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/3/30/Chica_N2B2.gif">Lass</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/8/84/Escolar_%28Chico%29N2B2.gif">School Kid I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/7/78/Escolar_%28Chica%29N2B2.gif">School Kid II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/6/68/Camarero_NB.gif">Waiter</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/5/50/Camarera_NB.gif">Waitress</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f5/Gemelas_NB.gif">Twins</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f1/Pescador_NB.gif">Fisherman</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f7/Criador_NB.gif">Pokémon Breeder I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/3/3c/Criadora_NB.gif">Pokémon Breeder II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/b/b7/Ciclista_%28hombre%29_NB.gif">Cyclist I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f2/Ciclista_%28mujer%29_NB.gif">Cyclist II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/b/be/Artista_NB.gif">Artist</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/d/d1/Cient%C3%ADfica_NB.gif">Scientist I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/1/1f/Cient%C3%ADfico_NB.gif">Scientist II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/0/02/Dama_parasol_NB.gif">Parasol Lady</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/4/46/Monta%C3%B1ero_NB.gif">Hiker</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/7/7b/Entrenadora_guay_NB.gif">Cool Trainer</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/9/97/Entrenador_guay_NB.gif">Ace Trainer</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/a/a5/M%C3%A9dium_%28hombre%29_NB.gif">Medium I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f4/M%C3%A9dium_%28mujer%29_NB.gif">Medium II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/b/b2/Duque_NB.gif">Monsieur</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/1/13/Duque_fantasma_N2B2.gif">Monsieur 666</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/8/86/Marquesa_NB.gif">Madame</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/fc/Ni%C3%B1o_bien_NB.gif">Cayetano</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/c/c9/Damisela_NB.gif">Cayetana</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/2/20/Karateka_NB.gif">Karateka White</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/2/23/Cinta_Negra_malvado.gif">Karateka Red</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/1/1e/Luchadora_NB.gif">Ninja</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/7/7d/Calvo_NB.gif">Roughneck</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/6/6a/Motorista_NB.gif">Biker</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f3/Arlequ%C3%ADn_NB.gif">Harlequin</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/0/0e/Enfermero_NB.gif">Nurse</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/5/59/Nadador_NB.gif">Swimmer I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/7/7e/Nadadora_NB.gif">Swimmer II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/f/f4/M%C3%A9dium_%28mujer%29_NB.gif">Medium II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/2/24/Guitarrista_NB.gif">Guitarist</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/d/df/Pandilleros_NB.gif">Hooligans</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/e/e7/Pitcher_NB.gif">Pitcher</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/0/0e/Breakdancer_NB.gif">Breakdacer</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/b/b1/P%C3%ADvot_NB.gif">Pivot</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/8/8e/Pok%C3%A9fan_%28hombre%29_NB.gif">Pokéfan I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/2/2e/Pok%C3%A9fan_%28mujer%29_NB.gif">Pokéfan II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/1/16/Pok%C3%A9mon_Ranger_%28mujer%29_NB.gif">Pokémon Ranger I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/3/3a/Pok%C3%A9mon_Ranger_%28hombre%29_NB.gif">Pokémon Ranger II</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/b/be/Hinchas_NB.gif">Backers I</option>
+              <option value="https://static.wikia.nocookie.net/espokemon/images/1/14/Animadoras_NB.gif">Backers II</option>
+            </select>
+            <span class="error-msg" *ngIf="photoField.hasError('required') && photoField.touched">Photo is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row button pb-1 p-t2">
+        <button (click)="onSubmit()" data-bs-dismiss="modal" [disabled]="form.invalid" type="button" class="btn btn-outline-danger">Create</button>
+    </div>
+    </form>

@@ -1,16 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
-.main-body{
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(170, 52, 36);
+.main-body {
+  margin-top: 10px;
+  width: 97%;
+  background: grey;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(https://media.redadn.es/css/i/pkm_fondo.png);
+  background-repeat: repeat;
+  background-position: center 166px !important;
 }
 
-.btn{
-    background-color: violet;
+.centertext {
+  line-height: 1.5em;
+  text-align: center;
 }
 
-.centertext{
-    line-height: 1.5em; 
-    text-align: center;
+.footer {
+  flex: 1;
+  }
+
+  html {
+  min-height: 100%;
+  }
+
+.icon-ftr{
+  width: 25px;
+  height: 25px;
+}
+.icon-ftr:hover{
+  transform: scale(2.50);
+  margin: 15px;
+  transition: .5s ease-in-out;
+}
+
+
+
+.bottom-footer {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer{
+  display: block;
 }

@@ -1,0 +1,32 @@
+<select [(ngModel)]="selectedTrainer" (ngModelChange)="selectTrainer($event)" class="form-select" aria-label="Trainer selector">
+    <option [ngValue]="trainer" *ngFor="let trainer of trainers">{{trainer.id}} - {{trainer.name}}</option>
+  </select>
+
+
+  <div class="pokeshow">
+    <app-teams-selected-pokemon *ngIf="selectedPokemon!==undefined" [pokemon]="selectedPokemon"></app-teams-selected-pokemon>
+  </div>
+
+  <div *ngIf="selectedTrainer!==undefined" class="pokelist">
+      <div class="center" *ngFor="let pokemon of selectedTrainer.team">
+        <button class="btn delete" (click)="deletePokemon(pokemon.id)">&#x2715;</button>
+        <app-pokemon-details (click)="selectPokemon(pokemon.pokemon)" [pokemon]="pokemon.pokemon"></app-pokemon-details>
+    </div>
+    <div>
+      <button class="btn delete" style="visibility: hidden;">&#x2715;</button>
+      <div *ngIf="selectedTrainer.team.length<7" (click)="activateInput()" class="pokecard">
+        <div class="container">
+          <p style="text-align: center" *ngIf="!addPokemonInput">Add pokemon</p>
+          <div class="row">
+          <div class="col">
+            <input class="pokename" (keydown)="checkEnter($event)" *ngIf="addPokemonInput" type="text" [(ngModel)]="pokemonToAdd">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button *ngIf="addPokemonInput" class="btn btn-outline-danger" (click)="addPokemon(pokemonToAdd)">Add Pkmn</button>
+          </div>
+          </div>
+        </div>
+    </div>
+  </div>

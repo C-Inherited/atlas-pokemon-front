@@ -1,0 +1,21 @@
+
+.main {
+  flex: 1;
+}
+
+.icon{
+  width: 25px;
+  height: 25px;
+}
+
+
+.bottom-footer {
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer{
+  display: block;
+}

@@ -1,38 +1,51 @@
-import {Component, OnInit} from '@angular/core';
-import {TrainerService} from '../../services/trainer.service';
-import {Trainer} from '../../common/trainer';
-import {PokemonService} from '../../services/pokemon.service';
+import { Component, OnInit } from '@angular/core';
+import { TrainerService } from '../../services/trainer.service';
+import { Trainer} from '../../common/interfaces';
+import { PokemonService } from '../../services/pokemon.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-trainer-details',
   templateUrl: './trainer-details.component.html',
-  styleUrls: ['./trainer-details.component.css']
+  styleUrls: ['./trainer-details.component.css'],
 })
 export class TrainerDetailsComponent implements OnInit {
 
-  trainer = new Trainer(0, '', '', 0, '');
+  trainer: Trainer;
+  trainers: Trainer[];
+  selectedTrainer!: Trainer;
 
-  constructor(private trainerService: TrainerService, private pokemonService: PokemonService) {
-  }
+
+
+  constructor(
+    private trainerService: TrainerService,
+    private pokemonService: PokemonService,
+    private activatedRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
-    // this.getTrainerById(2);
-    this.getCompleteTrainerById(1);
+    this.getTrainerById();
   }
 
-  private getTrainerById(id: number): void {
-    this.trainerService.getTrainerById(id).subscribe((trainer) => {
-      console.log(trainer);
-      this.trainer = new Trainer(trainer.id, trainer.name, trainer.hobby, trainer.age, trainer.imageUrl);
+  private async getTrainerById(): Promise<void> {
+    this.activatedRoute.params.subscribe(async params => {
+      const postId = +params.id;
+      await this.trainerService.getTrainerById(postId).then((trainer) => {
+        trainer.team.forEach((pokemonInfo, index) => {
+          this.pokemonService.getPokemonById(pokemonInfo.pokemonId)
+            .then((pokemonRaw) => {
+              trainer.team[index].pokemon = pokemonRaw;
+            });
+        });
+        this.trainer = trainer;
+      });
     });
   }
 
-  private getCompleteTrainerById(id: number): void {
-    this.trainerService.getCompleteTrainerById(id).subscribe((trainer) => {
-      console.log(trainer);
-      this.trainer = new Trainer(trainer.id, trainer.name, trainer.hobby, trainer.age, trainer.imageUrl);
-      //todo need to implement the algorithm to parse the id from the service response and call the pookemon service to get the complete pokemon datas
-    });
+  async listTrainers(): Promise<void> {
+    this.trainers = [];
+    (await this.trainerService.getTrainers().then((trainerList) => {
+      this.trainers = trainerList;
+    }));
   }
-
 }

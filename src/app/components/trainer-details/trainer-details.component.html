@@ -1,4 +1,36 @@
-<!--need to fix the interface of team that we receive from the local api-->
-<p>{{trainer.name}} {{trainer.hobby}} {{trainer.team}}</p>
+<main>
+  <div class="container rounded shadow-sm pt-4 pb-5">
+    <div class="row" *ngIf="trainer !== undefined">
+      <div class="col-4">
+        <img
+          id="trainer-image"
+          class="float-right d-block"
+          src="{{ trainer.imageUrl }}"
+          alt="trainer image"/>
+      </div>
+      <div class="col-4">
+        <p>Name: {{trainer.name}}</p>
+        <p>Age: {{trainer.age}}</p>
+        <p>Hobby: {{trainer.hobby}}</p>
+        <p>Team size: {{trainer.team.length}}</p>
+      </div>
+      <div class="col-4 center align-items-center">
+        <p><strong>TRAINER FROM KANTO REGION</strong></p>
+        <div class="h-100" >
+        <img src="https://static.wikia.nocookie.net/pokemon/images/6/66/Kanto_Map_%28Let%27s_Go%29.png" alt="Kanto Region">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="pokelist">
+          <div *ngFor="let pokemon of trainer.team ">
+            <app-pokemon-details [pokemon]="pokemon.pokemon"></app-pokemon-details>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <app-trainer-list></app-trainer-list>
+    </div>
 
-
+  </div>
+</main>

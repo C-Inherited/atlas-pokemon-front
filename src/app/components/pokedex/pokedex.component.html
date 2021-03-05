@@ -1,0 +1,103 @@
+<div class="container pokedex">
+  <img  class="title-img" src="https://i.ibb.co/ZYVwPKh/Pokedex.png" alt="title-image" height="150px">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="poke-box">
+
+          <div *ngFor="let pokemon of pokePage" (click)="showPokemonDetails(pokemon)">
+
+            <!--   -->
+            <div [ngClass]="{'poke-div': true, 'meow':pokemon.id===151}">
+              <img src="{{pokemon.photo}}" class="img-poke img-fluid" [ngClass]="{'meow-img':pokemon.id===151}">
+              <!-- <h5 class="mt-2">{{pokemon.name}}</h5> -->
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <div class="bottom-menu align-bottom">
+            <button class="btn btn-light m-1" (click)="getPage(1)">1-20</button>
+            <button class="btn btn-light m-1" (click)="getPage(2)">21-40</button>
+            <button class="btn btn-light m-1" (click)="getPage(3)">41-60</button>
+            <button class="btn btn-light m-1" (click)="getPage(4)">61-80</button>
+            <button class="btn btn-light m-1" (click)="getPage(5)">81-100</button>
+            <button class="btn btn-light m-1" (click)="getPage(6)">101-120</button>
+            <button class="btn btn-light m-1" (click)="getPage(7)">121-140</button>
+            <button class="btn btn-light m-1" (click)="getPage(8)">140-150</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    <div class="col-sm-6">
+      <img src="{{pokemonToShow.artwork}}" class="img-fluid big-img mt-8">
+
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 poke-stats">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>{{pokemonToShow.id}} - {{pokemonToShow.name}}</h2>
+            </div>
+            <div class="col-sm-6">
+
+              <span class="stats"></span>
+              <p>HP:<span class="stats">{{pokemonToShow.hp}}</span></p>
+              <p>SPEED: <span class="stats">{{pokemonToShow.speed}}</span></p>
+              <p>TYPES: <span class="stats"
+                              class="poketype rounded"
+                              *ngFor="let type of pokemonToShow.types"
+                              [ngClass]="{
+              normal: type === 'normal',
+              fighting: type === 'fighting',
+              flying: type === 'flying',
+              poison: type === 'poison',
+              ground: type === 'ground',
+              rock: type === 'rock',
+              bug: type === 'bug',
+              ghost: type === 'ghost',
+              steel: type === 'steel',
+              fire: type === 'fire',
+              water: type === 'water',
+              grass: type === 'grass',
+              electric: type === 'electric',
+              psychic: type === 'psychic',
+              ice: type === 'ice',
+              dragon: type === 'dragon',
+              dark: type === 'dark',
+              fairy: type === 'fairy',
+              unknown: type === 'unknown',
+              shadow: type === 'shadow'
+                  }"
+              >
+              {{ type }}
+            </span></p>
+              <p>HEIGHT: <span class="stats">{{pokemonToShow.height}}</span></p>
+              <p>WEIGHT: <span class="stats">{{pokemonToShow.weight}}</span></p>
+            </div>
+            <div class="col-sm-6">
+              <p>ATTACK: <span class="stats">{{pokemonToShow.attack}}</span></p>
+              <p>DEFENSE: <span class="stats">{{pokemonToShow.defense}}</span></p>
+              <p>SP.ATK: <span class="stats">{{pokemonToShow.special_attack}}</span></p>
+              <p>SP.DEF: <span class="stats">{{pokemonToShow.special_defense}}</span></p>
+              <p>PWR: </p>
+              <li *ngFor="let ability of pokemonToShow.abilities">{{ability.ability}} <span *ngIf="ability.is_hidden"> (hidden)</span> </li>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>

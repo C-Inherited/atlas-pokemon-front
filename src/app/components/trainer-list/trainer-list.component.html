@@ -1,12 +1,30 @@
-<div *ngFor="let trainer of trainers; let i = index">
 
-  <img src="{{trainer.imageUrl}}" height="60" (click)="showHideTeam(i)"/>
-  <p>{{trainer.name}}</p>
-  <p>{{trainer.hobby}}</p>
+<div class="modal fade border-radius" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <app-trainer-create (trainerCreated)="trainerCreated()"></app-trainer-create>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
 
-  <app-pokemon-list *ngIf="trainer.showTeam" [team]="trainer.team"></app-pokemon-list>
+<div class="row mx-2 px-3 ">
+  <div *ngIf="trainersCarousel!==undefined">
+      <div class="row" *ngFor="let carouselPage of trainersCarousel">
+        <div class="trainercard col" *ngFor="let trainer of carouselPage">
+          <button class="btn delete" (click)="deleteTrainerById(trainer.id)" >X</button>
+          <div class="text-center">{{ trainer.name }}</div>
+          <a class="position-absolute top-50 start-50 translate-middle" [routerLink]="['/trainers', trainer.id]">
+            <img class="mt-3" src="{{ trainer.imageUrl }}" height="100px" alt="trainer-image" />
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
 
-  
-
+<div class="fixed-action-btn">
+  <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn-floating btn-large turquoise pulse tooltipped fixed" data-position="left" data-tooltip="Learn More">
+    <i class="large material-icons">add_circle_outline</i>
+  </a>
 </div>
 

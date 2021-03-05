@@ -1,0 +1,50 @@
+
+.trainercard {
+  display: inline-block;
+  width: 130px;
+  height: 140px;
+  padding-top: 0.5%;
+  margin: 0.4%;
+  border-radius: 1em;
+  background-color: white;
+  transition: all 0.4s;
+  border: rgb(245, 227, 227);
+  border-width: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.modal {
+  height: 50%;
+  background: url("https://media.redadn.es/imagenes/articulos_334540.jpg");
+}
+
+.btn.delete{
+  height: 20px;
+  width: 20px;
+  font-size: 10px;
+  padding: 0px;
+  position: absolute;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+.trainerlist {
+  position: relative;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+  height: 150px;
+  width: 100%;
+}
+
+
+
+.main{
+  padding-bottom: 10px;
+}
+
+.btn {
+  margin: 20px 40% 0;
+}
+
