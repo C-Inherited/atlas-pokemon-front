@@ -8,24 +8,24 @@
           <div *ngFor="let pokemon of pokePage" (click)="showPokemonDetails(pokemon)">
 
             <!--   -->
-            <div class="poke-div">
-              <img src="{{pokemon.photo}}" class="img-poke img-fluid">
+            <div [ngClass]="{'poke-div': true, 'meow':pokemon.id===151}">
+              <img src="{{pokemon.photo}}" class="img-poke img-fluid" [ngClass]="{'meow-img':pokemon.id===151}">
               <!-- <h5 class="mt-2">{{pokemon.name}}</h5> -->
             </div>
 
           </div>
-          <div class="row">
-            <br>
-            <div class="bottom-menu align-bottom">
-              <button class="btn btn-light m-1" (click)="getPage(1)">1-20</button>
-              <button class="btn btn-light m-1" (click)="getPage(2)">21-40</button>
-              <button class="btn btn-light m-1" (click)="getPage(3)">41-60</button>
-              <button class="btn btn-light m-1" (click)="getPage(4)">61-80</button>
-              <button class="btn btn-light m-1" (click)="getPage(5)">81-100</button>
-              <button class="btn btn-light m-1" (click)="getPage(6)">101-120</button>
-              <button class="btn btn-light m-1" (click)="getPage(7)">121-140</button>
-              <button class="btn btn-light m-1" (click)="getPage(8)">140-150</button>
-            </div>
+        </div>
+        <div class="row">
+          <br>
+          <div class="bottom-menu align-bottom">
+            <button class="btn btn-light m-1" (click)="getPage(1)">1-20</button>
+            <button class="btn btn-light m-1" (click)="getPage(2)">21-40</button>
+            <button class="btn btn-light m-1" (click)="getPage(3)">41-60</button>
+            <button class="btn btn-light m-1" (click)="getPage(4)">61-80</button>
+            <button class="btn btn-light m-1" (click)="getPage(5)">81-100</button>
+            <button class="btn btn-light m-1" (click)="getPage(6)">101-120</button>
+            <button class="btn btn-light m-1" (click)="getPage(7)">121-140</button>
+            <button class="btn btn-light m-1" (click)="getPage(8)">140-150</button>
           </div>
         </div>
       </div>

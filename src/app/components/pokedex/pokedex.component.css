@@ -44,6 +44,22 @@
     background-color: rgb(163, 45, 45);
 }
 
+.meow{
+  background-color: rgb(163, 45, 45);
+}
+
+.meow:hover{
+  background-color: white;
+}
+
+.meow-img{
+  opacity: 0;
+}
+
+.meow-img:hover{
+  opacity: 1;
+}
+
 .stats{
   font-weight: bold;
 }

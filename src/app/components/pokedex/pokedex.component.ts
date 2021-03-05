@@ -45,6 +45,9 @@ export class PokedexComponent implements OnInit {
         this.pokePage.push(pokemon);
         this.sortPokemons();
       })
+      if (i === 151){
+        break;
+      }
     }
   }
 
