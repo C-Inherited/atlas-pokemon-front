@@ -49,7 +49,7 @@ export class TrainerListComponent implements OnInit {
 
   deleteTrainerById(id: number): void {
     this.trainerService.deleteTrainer(id).subscribe(() => {
-      this.trainers = this.trainers.filter(trainer => trainer.id !== id);
+      this.listTrainers().then();
     });
   }
 
