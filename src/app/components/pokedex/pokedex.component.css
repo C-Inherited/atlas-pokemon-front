@@ -9,8 +9,11 @@
 
 }
 
-.poke-img {
+.poke-div:hover{
+  background-color: rgb(255, 208, 208);
+}
 
+.poke-img {
     height: 50%;
 }
 

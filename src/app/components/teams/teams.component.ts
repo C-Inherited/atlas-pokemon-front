@@ -1,3 +1,4 @@
+import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Trainer } from 'src/app/common/interfaces';
@@ -58,25 +59,37 @@ export class TeamsComponent implements OnInit {
   deletePokemon(id: number){
     console.log(id)
     this.trainerService.deletePokemonFromTeam(id).subscribe(() => {
-      this.listTrainers()
+      this.selectedTrainer.team.forEach((pokemon, index) => {
+        if (pokemon.id === id){
+          this.selectedTrainer.team.splice(index,1);
+        }
+      })
     })
   }
 
   addPokemon = (name: string) => {
+    name = name.toLocaleLowerCase();
     this.pokemonService.getPokemonByName(name).then(pokemon => {
       if (pokemon !== undefined){
         this.trainerService.addPokemonToTrainer({pokemonId: pokemon.id, trainerId: this.selectedTrainer.id}).subscribe(pokemonRaw =>
           {
             this.addPokemonInput = false;
             this.selectedTrainer.team.push({id: pokemonRaw.id, pokemonId: pokemonRaw.pokemonId, pokemon});
-          },
-          error => alert(name + " does not exist :C"));
+            this.pokemonToAdd = "";
+          })
       }
-    });
+    },
+    error => alert(name + " does not exist :C"));
   };
 
 
   activateInput(): void{
     this.addPokemonInput = true;
+  }
+
+  checkEnter(event: KeyboardEvent):void{
+    if (event.key === 'Enter'){
+      this.addPokemon(this.pokemonToAdd);
+    }
   }
 }

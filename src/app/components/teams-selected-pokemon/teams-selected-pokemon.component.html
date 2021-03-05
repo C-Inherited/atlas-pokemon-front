@@ -58,6 +58,8 @@
                   <p>DEFENSE: <span class="stats">{{pokemon.defense}}</span></p>
                   <p>SP.ATK: <span class="stats">{{pokemon.special_attack}}</span></p>
                   <p>SP.DEF: <span class="stats">{{pokemon.special_defense}}</span></p>
+                  <p>PWR: </p>
+                  <li *ngFor="let ability of pokemon.abilities">- {{ability.ability}} <span *ngIf="ability.is_hidden"> (hidden)</span> </li>
                 </div>
               </div>
             </div>

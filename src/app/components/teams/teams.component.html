@@ -19,7 +19,7 @@
           <p style="text-align: center" *ngIf="!addPokemonInput">Add pokemon</p>
           <div class="row">
           <div class="col">
-            <input *ngIf="addPokemonInput" type="text"  pattern="[0-9]+" [(ngModel)]="pokemonToAdd">
+            <input class="pokename" (keydown)="checkEnter($event)" *ngIf="addPokemonInput" type="text" [(ngModel)]="pokemonToAdd">
           </div>
         </div>
         <div class="row">
