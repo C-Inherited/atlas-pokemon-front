@@ -12,7 +12,7 @@
   .pokeshow{
     display: flex;
     justify-self: center;
-    margin-bottom: 20vh;
+    margin-bottom: 5vh;
   }
 
   .pokecard {
