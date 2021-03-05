@@ -10,7 +10,7 @@
 
 <div class="row mx-2 px-3 ">
   <div *ngIf="trainersCarousel!==undefined">
-      <div class="row" *ngFor="let carouselPage of trainersCarousel.slice(1,trainersCarousel.length)">
+      <div class="row" *ngFor="let carouselPage of trainersCarousel">
         <div class="trainercard col" *ngFor="let trainer of carouselPage">
           <button class="btn delete" (click)="deleteTrainerById(trainer.id)" >X</button>
           <div class="text-center">{{ trainer.name }}</div>
