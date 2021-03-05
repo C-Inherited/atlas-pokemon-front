@@ -16,6 +16,7 @@
 .modal {
   height: 50%;
   background: url("https://media.redadn.es/imagenes/articulos_334540.jpg");
+  background-size: cover;
 }
 
 .btn.delete{
