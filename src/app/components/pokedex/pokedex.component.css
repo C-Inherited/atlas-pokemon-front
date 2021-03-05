@@ -12,6 +12,8 @@
 .poke-div:hover{
   background-color: rgb(255, 208, 208);
   cursor: pointer;
+  transform: scale(1.20);
+  transition: .5s ease-in-out;
 }
 
 .poke-img {
@@ -40,7 +42,7 @@
 }
 
 .pokedex{
-    height: 70%;
+    height: 90%;
     border-radius: 5%;
     background-color: rgb(163, 45, 45);
 }

@@ -18,7 +18,30 @@
 .footer {
   flex: 1;
   }
-  
+
   html {
   min-height: 100%;
   }
+
+.icon-ftr{
+  width: 25px;
+  height: 25px;
+}
+.icon-ftr:hover{
+  transform: scale(2.50);
+  margin: 15px;
+  transition: .5s ease-in-out;
+}
+
+
+
+.bottom-footer {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.footer{
+  display: block;
+}
