@@ -71,12 +71,16 @@ export class TeamsComponent implements OnInit {
     name = name.toLocaleLowerCase();
     this.pokemonService.getPokemonByName(name).then(pokemon => {
       if (pokemon !== undefined){
-        this.trainerService.addPokemonToTrainer({pokemonId: pokemon.id, trainerId: this.selectedTrainer.id}).subscribe(pokemonRaw =>
+        if (pokemon.id <= 151){
+                  this.trainerService.addPokemonToTrainer({pokemonId: pokemon.id, trainerId: this.selectedTrainer.id}).subscribe(pokemonRaw =>
           {
             this.addPokemonInput = false;
             this.selectedTrainer.team.push({id: pokemonRaw.id, pokemonId: pokemonRaw.pokemonId, pokemon});
             this.pokemonToAdd = "";
           })
+        }else{
+          alert("only first-gen pokemon allowed")
+        }
       }
     },
     error => alert(name + " does not exist :C"));
