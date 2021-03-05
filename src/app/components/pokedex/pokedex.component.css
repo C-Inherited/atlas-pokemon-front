@@ -11,6 +11,7 @@
 
 .poke-div:hover{
   background-color: rgb(255, 208, 208);
+  cursor: pointer;
 }
 
 .poke-img {
@@ -50,6 +51,7 @@
 
 .meow:hover{
   background-color: white;
+  cursor: pointer;
 }
 
 .meow-img{
